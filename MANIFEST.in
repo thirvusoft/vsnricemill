@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include vsnricemill *.css
+recursive-include vsnricemill *.csv
+recursive-include vsnricemill *.html
+recursive-include vsnricemill *.ico
+recursive-include vsnricemill *.js
+recursive-include vsnricemill *.json
+recursive-include vsnricemill *.md
+recursive-include vsnricemill *.png
+recursive-include vsnricemill *.py
+recursive-include vsnricemill *.svg
+recursive-include vsnricemill *.txt
+recursive-exclude vsnricemill *.pyc
