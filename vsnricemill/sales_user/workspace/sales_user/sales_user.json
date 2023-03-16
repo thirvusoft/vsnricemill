@@ -1,0 +1,77 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"HwjfaZK0VD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales User</span>\",\"col\":12}},{\"id\":\"4PDyLwAlfd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"POS\",\"col\":3}},{\"id\":\"yXTd2W7e9d\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"dr6RrWNq2o\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"PviLc_rbpw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"Al87TC1mV6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"_yu2nKwugL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"6MJYoMUB7J\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Chart Of Account\",\"col\":3}}]",
+ "creation": "2023-03-16 11:10:10.418345",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "income",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Sales User",
+ "links": [],
+ "modified": "2023-03-16 12:32:21.673050",
+ "modified_by": "Administrator",
+ "module": "Sales user",
+ "name": "Sales User",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 42.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "Tree",
+   "label": "Chart Of Account",
+   "link_to": "Account",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "POS",
+   "link_to": "posapp",
+   "type": "Page"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Sales Order",
+   "link_to": "Sales Order",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Sales Invoice",
+   "link_to": "Sales Invoice",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Payment Entry",
+   "link_to": "Payment Entry",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Stock Entry",
+   "link_to": "Stock Entry",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "Report Builder",
+   "label": "General Ledger",
+   "link_to": "General Ledger",
+   "type": "Report"
+  }
+ ],
+ "title": "Sales User"
+}

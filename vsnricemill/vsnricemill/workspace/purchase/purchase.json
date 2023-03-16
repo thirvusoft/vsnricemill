@@ -1,0 +1,56 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"_0PJzzYais\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Purchase</span>\",\"col\":12}},{\"id\":\"Rzv1Izc87e\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Supplier\",\"col\":3}},{\"id\":\"r80s3TPulg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Order\",\"col\":3}},{\"id\":\"jzRpBRxtBV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"99OqUwNT8L\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}}]",
+ "creation": "2023-03-08 17:24:29.699780",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 1,
+ "icon": "buying",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Purchase",
+ "links": [],
+ "modified": "2023-03-10 15:08:45.079390",
+ "modified_by": "Administrator",
+ "module": "Vsnricemill",
+ "name": "Purchase",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 40.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Supplier",
+   "link_to": "Supplier",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Purchase Order",
+   "link_to": "Purchase Order",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Purchase Invoice",
+   "link_to": "Purchase Invoice",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Purchase Receipt",
+   "link_to": "Purchase Receipt",
+   "type": "DocType"
+  }
+ ],
+ "title": "Purchase"
+}
