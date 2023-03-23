@@ -103,9 +103,8 @@ doctype_js = {"Sales Invoice" : "/vsnricemill/custom/js/sales_invoice.js"}
 # Hook on document methods and events
 
 doc_events = {
-	"Address": {
-		"validate": "vsnricemill.vsnricemill.custom.py.address.make_contact_creation",
-
+	"Sales Invoice": {
+		"autoname": "vsnricemill.vsnricemill.custom.py.sales_invoice.auto_name",
 	}
 }
 
