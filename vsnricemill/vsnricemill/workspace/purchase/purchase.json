@@ -11,7 +11,7 @@
  "is_hidden": 0,
  "label": "Purchase",
  "links": [],
- "modified": "2023-03-10 15:08:45.079390",
+ "modified": "2023-03-16 16:26:53.795736",
  "modified_by": "Administrator",
  "module": "Vsnricemill",
  "name": "Purchase",
@@ -21,7 +21,7 @@
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 40.0,
+ "sequence_id": 37.0,
  "shortcuts": [
   {
    "color": "Grey",
