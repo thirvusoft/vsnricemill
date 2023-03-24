@@ -9,11 +9,11 @@ def payment_entry_custom_fields():
     pass
     
 def property_setter():
-    make_property_setter("Payment Entry", "paid_from", "mandatory", 0, "Check")
+    make_property_setter("Payment Entry", "paid_from", "reqd", 0, "Check")
     make_property_setter("Payment Entry", "paid_from", "hidden", 1, "Check")
-    make_property_setter("Payment Entry", "paid_from_account_currency", "mandatory", 0, "Check")
+    make_property_setter("Payment Entry", "paid_from_account_currency", "reqd", 0, "Check")
     make_property_setter("Payment Entry", "paid_from_account_currency", "hidden", 1, "Check")
-    make_property_setter("Payment Entry", "paid_to_account_currency", "mandatory", 0, "Check")
+    make_property_setter("Payment Entry", "paid_to_account_currency", "reqd", 0, "Check")
     make_property_setter("Payment Entry", "paid_to_account_currency", "hidden", 1, "Check")
     
 
