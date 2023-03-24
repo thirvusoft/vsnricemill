@@ -1,15 +1,6 @@
 {
- "charts": [
-  {
-   "chart_name": "Sales Order Analysis",
-   "label": "Sales Order"
-  },
-  {
-   "chart_name": "Outgoing Bills (Sales Invoice)",
-   "label": "Sales Invoice"
-  }
- ],
- "content": "[{\"id\":\"jZ93enR4CD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales</span>\",\"col\":12}},{\"id\":\"5HWttOUE6l\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer\",\"col\":3}},{\"id\":\"uUYvLURtW0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"ILAZMzmvFr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"mACnmk6Z-s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Delivery Note\",\"col\":3}},{\"id\":\"K87lTT5Bj8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"POS\",\"col\":3}},{\"id\":\"Yg_NE-EllC\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}}]",
+ "charts": [],
+ "content": "[{\"id\":\"jZ93enR4CD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales</span>\",\"col\":12}},{\"id\":\"5HWttOUE6l\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer\",\"col\":3}},{\"id\":\"uUYvLURtW0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"ILAZMzmvFr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"mACnmk6Z-s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Delivery Note\",\"col\":3}}]",
  "creation": "2023-03-08 17:24:58.620932",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -18,27 +9,8 @@
  "idx": 0,
  "is_hidden": 0,
  "label": "Sales",
- "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Masters",
-   "link_count": 1,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Customer Group",
-   "link_count": 0,
-   "link_to": "Customer Group",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  }
- ],
- "modified": "2023-03-15 10:32:02.809699",
+ "links": [],
+ "modified": "2023-03-16 16:28:45.825277",
  "modified_by": "Administrator",
  "module": "Vsnricemill",
  "name": "Sales",
@@ -48,15 +20,8 @@
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 41.0,
+ "sequence_id": 38.0,
  "shortcuts": [
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "POS",
-   "link_to": "posapp",
-   "type": "Page"
-  },
   {
    "color": "Grey",
    "doc_view": "List",

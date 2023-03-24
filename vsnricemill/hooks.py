@@ -64,7 +64,8 @@ doctype_js = {"Sales Invoice" : "/vsnricemill/custom/js/sales_invoice.js"}
 # ------------
 
 # before_install = "vsnricemill.install.before_install"
-# after_install = "vsnricemill.install.after_install"
+after_install = "vsnricemill.install.after_install"
+after_migrate = "vsnricemill.install.after_install"
 
 # Uninstallation
 # ------------

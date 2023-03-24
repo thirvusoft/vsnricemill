@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"HwjfaZK0VD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales User</span>\",\"col\":12}},{\"id\":\"4PDyLwAlfd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"POS\",\"col\":3}},{\"id\":\"yXTd2W7e9d\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"dr6RrWNq2o\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"PviLc_rbpw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"Al87TC1mV6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"_yu2nKwugL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"6MJYoMUB7J\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Chart Of Account\",\"col\":3}}]",
+ "content": "[{\"id\":\"HwjfaZK0VD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales User</span>\",\"col\":12}},{\"id\":\"4PDyLwAlfd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"POS\",\"col\":3}},{\"id\":\"yXTd2W7e9d\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"PviLc_rbpw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"Al87TC1mV6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"_yu2nKwugL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"GTlIZhuBDp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Ledger\",\"col\":3}},{\"id\":\"ZwTTB8YH0g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}}]",
  "creation": "2023-03-16 11:10:10.418345",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -11,7 +11,7 @@
  "is_hidden": 0,
  "label": "Sales User",
  "links": [],
- "modified": "2023-03-16 12:32:21.673050",
+ "modified": "2023-03-17 13:24:49.789375",
  "modified_by": "Administrator",
  "module": "Sales user",
  "name": "Sales User",
@@ -21,14 +21,21 @@
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 42.0,
+ "sequence_id": 40.0,
  "shortcuts": [
   {
    "color": "Grey",
-   "doc_view": "Tree",
-   "label": "Chart Of Account",
-   "link_to": "Account",
+   "doc_view": "List",
+   "label": "Sales Invoice",
+   "link_to": "Sales Invoice",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Stock Ledger",
+   "link_to": "Stock Ledger",
+   "type": "Report"
   },
   {
    "color": "Grey",
@@ -42,13 +49,6 @@
    "doc_view": "List",
    "label": "Sales Order",
    "link_to": "Sales Order",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Sales Invoice",
-   "link_to": "Sales Invoice",
    "type": "DocType"
   },
   {
