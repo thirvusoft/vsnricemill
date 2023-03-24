@@ -106,6 +106,7 @@ after_migrate = "vsnricemill.install.after_install"
 doc_events = {
 	"Sales Invoice": {
 		"autoname": "vsnricemill.vsnricemill.custom.py.sales_invoice.auto_name",
+        "validate" : "vsnricemill.vsnricemill.custom.py.sales_invoice.validate"
 	}
 }
 

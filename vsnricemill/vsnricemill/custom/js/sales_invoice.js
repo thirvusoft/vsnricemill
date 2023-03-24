@@ -5,7 +5,7 @@ frappe.ui.form.on("Sales Invoice Item", {
             
             method: "vsnricemill.vsnricemill.custom.py.sales_invoice.get_attribute",
             args:{
-                items:frm.doc.items,
+                items:row,
             },
 
             callback: function(r) {
