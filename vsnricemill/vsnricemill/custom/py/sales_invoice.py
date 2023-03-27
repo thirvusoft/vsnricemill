@@ -9,6 +9,7 @@ def auto_name(doc, actions):
 def is_opening_name(doc, actions):
     if(doc.is_opening=="Yes"):
         doc.name = make_autoname(doc.opening_series,doc=doc)
+        
 
 @frappe.whitelist()
 def get_attribute(items):
