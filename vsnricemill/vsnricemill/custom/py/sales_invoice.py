@@ -6,6 +6,10 @@ def auto_name(doc, actions):
     if(doc.is_pos==1):
         doc.name = make_autoname(doc.pos_series,doc=doc)
 
+def is_opening_name(doc, actions):
+    if(doc.is_opening=="Yes"):
+        doc.name = make_autoname(doc.opening_series,doc=doc)
+
 @frappe.whitelist()
 def get_attribute(items):
     item = json.loads(items)
