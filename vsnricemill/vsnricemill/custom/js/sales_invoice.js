@@ -15,3 +15,19 @@ frappe.ui.form.on("Sales Invoice Item", {
         })
     },
 })
+frappe.ui.form.on("Sales Invoice", {
+    customer: function(frm,cdt,cdn){
+                frappe.call({
+                    method: "vsnricemill.vsnricemill.custom.py.sales_invoice.loyalty",
+                    args:{
+                        customer:frm.doc.customer,
+                        company:frm.doc.company
+                    },
+                    callback: function(r) {
+                        console.log(r.message)
+                }
+                })
+            
+            }
+    
+})
