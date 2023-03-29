@@ -96,9 +96,9 @@ after_migrate = "vsnricemill.install.after_install"
 # Override standard doctype classes
 
 # override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
+# 	"Sales Invoice": "vsnricemill.vsnricemill.custom.py.sales_invoice.vsnsalesInvoice",
+    
 # }
-
 # Document Events
 # ---------------
 # Hook on document methods and events
@@ -108,7 +108,11 @@ doc_events = {
 		"autoname": ["vsnricemill.vsnricemill.custom.py.sales_invoice.auto_name",
                		 "vsnricemill.vsnricemill.custom.py.sales_invoice.is_opening_name"],
         "validate" : "vsnricemill.vsnricemill.custom.py.sales_invoice.validate"
-	}
+	},
+    # "Payment Entry": {
+    # 	"on_submit" : 	"vsnricemill.vsnricemill.custom.py.payment_entry.update_outstanding_amounts",
+    #     "on_cancel" :   "vsnricemill.vsnricemill.custom.py.payment_entry.update_outstanding_amounts",
+	# }
 }
 
 # Scheduled Tasks
