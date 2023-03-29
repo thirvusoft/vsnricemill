@@ -22,8 +22,6 @@ def validate(doc,event):
     for i in doc.items:
         i.size = frappe.db.get_value("Item Variant Attribute",{"parent":i.item_code,"attribute":"Size"},"attribute_value")
 
-
-
 import frappe
 from erpnext.accounts.party import get_dashboard_info
 @frappe.whitelist()

@@ -24,7 +24,7 @@ frappe.ui.form.on("Sales Invoice", {
                         company:frm.doc.company
                     },
                     callback: function(r) {
-                        console.log(r.message)
+                        frm.set_value("existing_loyalty_points",r.message)
                 }
                 })
             
