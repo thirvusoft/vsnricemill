@@ -20,3 +20,19 @@ def get_attribute(items):
 def validate(doc,event):
     for i in doc.items:
         i.size = frappe.db.get_value("Item Variant Attribute",{"parent":i.item_code,"attribute":"Size"},"attribute_value")
+
+import frappe
+from erpnext.accounts.party import get_dashboard_info
+@frappe.whitelist()
+def loyalty(customer,company):
+ if customer:
+  doc = frappe.get_doc("Customer",customer)
+  data_points = get_dashboard_info(doc.doctype, doc.name, doc.loyalty_program)
+  loyalty_points = 0
+  for data_point in data_points:
+   if 'loyalty_points' not in data_point:
+    data_point['loyalty_points'] = 0
+   if 'loyalty_points' in data_point:
+    if company == data_point["company"]:
+     loyalty_points = data_point['loyalty_points']
+  return loyalty_points
