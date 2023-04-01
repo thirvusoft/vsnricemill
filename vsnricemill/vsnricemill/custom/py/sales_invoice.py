@@ -44,3 +44,4 @@ def loyalty(customer,company):
     if company == data_point["company"]:
      loyalty_points = data_point['loyalty_points']
   return loyalty_points
+
