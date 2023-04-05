@@ -11,7 +11,7 @@ from frappe import _, msgprint, throw
 
 def auto_name(doc, actions):
     if(doc.is_pos==1):
-        doc.name = make_autoname(doc.pos_series,doc=doc)
+        doc.name = make_autoname(f"{doc.name_series}.-.{doc.pos_series}.-.#####",doc=doc)
 
 def is_opening_name(doc, actions):
     if(doc.is_opening=="Yes"):
@@ -44,4 +44,19 @@ def loyalty(customer,company):
     if company == data_point["company"]:
      loyalty_points = data_point['loyalty_points']
   return loyalty_points
+
+import frappe
+from erpnext.accounts.party import get_dashboard_info
+def loyalty_validate(doc,event):
+ if doc.customer:
+  doc_ = frappe.get_doc("Customer",doc.customer)
+  data_points = get_dashboard_info(doc_.doctype, doc_.name, doc_.loyalty_program)
+  loyalty_points = 0
+  for data_point in data_points:
+   if 'loyalty_points' not in data_point:
+    data_point['loyalty_points'] = 0
+   if 'loyalty_points' in data_point:
+    if doc.company == data_point["company"]:
+     loyalty_points = data_point['loyalty_points']
+     doc.existing_loyalty_point = loyalty_points
 
