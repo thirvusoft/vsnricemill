@@ -109,10 +109,12 @@ doc_events = {
                		 "vsnricemill.vsnricemill.custom.py.sales_invoice.is_opening_name"],
         "validate" : "vsnricemill.vsnricemill.custom.py.sales_invoice.validate"
 	},
-    # "Payment Entry": {
-    # 	"on_submit" : 	"vsnricemill.vsnricemill.custom.py.payment_entry.update_outstanding_amounts",
-    #     "on_cancel" :   "vsnricemill.vsnricemill.custom.py.payment_entry.update_outstanding_amounts",
-	# }
+    "Payment Entry": {
+    	"validate" : 	"vsnricemill.vsnricemill.custom.py.payment_entry.update",
+	},
+    "Journal Entry" : {
+		"validate" : "vsnricemill.vsnricemill.custom.py.journal_entry.update"
+	}
 }
 
 # Scheduled Tasks
