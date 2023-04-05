@@ -59,3 +59,4 @@ def loyalty_validate(doc,event):
     if doc.company == data_point["company"]:
      loyalty_points = data_point['loyalty_points']
      doc.existing_loyalty_point = loyalty_points
+
