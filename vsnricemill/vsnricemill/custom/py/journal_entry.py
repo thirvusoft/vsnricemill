@@ -5,12 +5,13 @@ from frappe.email.doctype.notification.notification import get_context
 from frappe.integrations.doctype.slack_webhook_url.slack_webhook_url import send_slack_message
 def update(doc,actions):
     if doc.voucher_type == "Journal Entry":
-        bank_account =  frappe.get_list("Account",{'name':"SBI - VSN"},"limit")
-        print(bank_account[0].limit * 90 /100 - bank_account[0].limit)
-        get_balance = bank_account[0].limit - bank_account[0].limit * 90 /100
+        # for i in doc.accounts:
+        #     bank_account =  frappe.get_list("Account",{'name':i.account},"limit")
+        #     get_balance = bank_account[0].limit - bank_account[0].limit * 90 /100
         for i in doc.accounts:
-            
-            if i.account == "SBI - VSN" and i.credit_in_account_currency :
+            bank_account =  frappe.get_list("Account",{'name':i.account},"limit")
+            get_balance = bank_account[0].limit - bank_account[0].limit * 90 /100
+            if i.credit_in_account_currency :
                 bal = get_balance_on(i.account, date = None, cost_center=None)
                 if bal < i.credit_in_account_currency:
                     send_slack_message(

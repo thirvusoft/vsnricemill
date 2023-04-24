@@ -12,6 +12,9 @@ from frappe import _, msgprint, throw
 def auto_name(doc, actions):
     if(doc.is_pos==1):
         doc.name = make_autoname(f"{doc.name_series}.-.{doc.pos_series}.-.#####",doc=doc)
+def counter_sales(doc, actions):
+    if (doc.pos_profile == "JM Shop"):
+      doc.name = make_autoname(f"{doc.c_sales}.-.{doc.pos_series}.-.#####",doc=doc)
 
 def is_opening_name(doc, actions):
     if(doc.is_opening=="Yes"):
