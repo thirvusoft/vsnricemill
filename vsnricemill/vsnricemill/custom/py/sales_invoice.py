@@ -72,21 +72,28 @@ def denomination_on_load(doc, actions):
             return
         
         # create a dictionary of denomination counts
-        counts = {}
-        for m in opening_shift.denomination_table:
-            counts[m.currency] = m.count
+        paid = {}
+        chang = {}
+        # for m in opening_shift.denomination_table:
+        #     counts[m.currency] = m.count
             
         # update the counts based on paid denominations
         for i in doc.paid_denomination:
-            if i.currency in counts:
-                counts[i.currency] += i.count
+            if i.currency in paid:
+                paid[i.currency] += i.count
             else:
-                counts[i.currency] = i.count
+                paid[i.currency] = i.count
+        for c in doc.change_denomination:
+            if c:
+                if c.currency in chang:
+                    chang[c.currency ] += c.count
+                else:
+                    chang[c.currency] = c.count
         
         # update the denomination_table list based on the updated counts
         for m in opening_shift.denomination_table:
-            if m.currency in counts:
-                m.count = counts[m.currency]
+            if m.currency in paid:
+                m.count += (paid[m.currency] - chang[m.currency])
                 m.amount = m.currency * m.count
                 
         opening_shift.save()
