@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"HwjfaZK0VD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales User</span>\",\"col\":12}},{\"id\":\"4PDyLwAlfd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"POS\",\"col\":3}},{\"id\":\"yXTd2W7e9d\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"PviLc_rbpw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"Al87TC1mV6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"_yu2nKwugL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"GTlIZhuBDp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Ledger\",\"col\":3}},{\"id\":\"ZwTTB8YH0g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}}]",
+ "content": "[{\"id\":\"HwjfaZK0VD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales User</span>\",\"col\":12}},{\"id\":\"4PDyLwAlfd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"POS\",\"col\":3}},{\"id\":\"yXTd2W7e9d\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"PviLc_rbpw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"Al87TC1mV6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"_yu2nKwugL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"GTlIZhuBDp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Ledger\",\"col\":3}},{\"id\":\"ZwTTB8YH0g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"ph0c0LUaul\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Report</b></span>\",\"col\":12}},{\"id\":\"GDH9VnvXPQ\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales Register\",\"col\":4}}]",
  "creation": "2023-03-16 11:10:10.418345",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -10,9 +10,38 @@
  "idx": 0,
  "is_hidden": 0,
  "label": "Sales User",
- "links": [],
- "modified": "2023-03-17 13:24:49.789375",
- "modified_by": "Administrator",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Register",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Sales Register",
+   "link_count": 0,
+   "link_to": "Common Sales Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Item Wise Sales Register",
+   "link_count": 0,
+   "link_to": "Item-wise Sales Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-04-26 10:16:54.952056",
+ "modified_by": "thirvusoft@gmail.com",
  "module": "Sales user",
  "name": "Sales User",
  "number_cards": [],
