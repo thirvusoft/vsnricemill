@@ -1,0 +1,52 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-04-25 11:20:05.561928",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "currency",
+  "count",
+  "amount"
+ ],
+ "fields": [
+  {
+   "allow_on_submit": 1,
+   "bold": 1,
+   "fieldname": "currency",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Currency"
+  },
+  {
+   "allow_on_submit": 1,
+   "bold": 1,
+   "fieldname": "count",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Count"
+  },
+  {
+   "allow_on_submit": 1,
+   "bold": 1,
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-04-26 17:01:30.333306",
+ "modified_by": "Administrator",
+ "module": "Vsnricemill",
+ "name": "Denomination",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

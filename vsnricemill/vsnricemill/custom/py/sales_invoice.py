@@ -60,3 +60,45 @@ def loyalty_validate(doc,event):
      loyalty_points = data_point['loyalty_points']
      doc.existing_loyalty_point = loyalty_points
 
+def denomination_on_load(doc, actions):
+    if doc.posa_pos_opening_shift:
+        try:
+            opening_shift = frappe.get_doc("POS Opening Shift", doc.posa_pos_opening_shift)
+        except Exception as e:
+            frappe.log_error(f"Error fetching POS Opening Shift: {e}")
+            return
+        
+        # create a dictionary of denomination counts
+        counts = {}
+        for m in opening_shift.denomination_table:
+            counts[m.currency] = m.count
+            
+        # update the counts based on paid denominations
+        for i in doc.paid_denomination:
+            if i.currency in counts:
+                counts[i.currency] += i.count
+            else:
+                counts[i.currency] = i.count
+        
+        # update the denomination_table list based on the updated counts
+        for m in opening_shift.denomination_table:
+            if m.currency in counts:
+                m.count = counts[m.currency]
+                m.amount = m.currency * m.count
+                
+        opening_shift.save()
+    else:
+        return
+
+def cancel_denomination(doc,actions):
+    if doc.posa_pos_opening_shift:
+        cancel_opening_shift = frappe.get_doc("POS Opening Shift", doc.posa_pos_opening_shift)
+        for i in doc.paid_denomination:
+            for m in cancel_opening_shift.denomination_table:
+                if i.currency == m.currency:
+                    m.count = m.count - i.count
+                    m.amount = m.amount - i.amount
+        
+        
+        
+
