@@ -117,6 +117,9 @@ doc_events = {
 	},
     "Journal Entry" : {
 		"validate" : "vsnricemill.vsnricemill.custom.py.journal_entry.update"
+	},
+    "Customer" : {
+		"validate" : "vsnricemill.vsnricemill.custom.py.customer.captilized_name"
 	}
 }
 

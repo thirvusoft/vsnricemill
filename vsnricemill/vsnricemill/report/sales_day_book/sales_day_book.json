@@ -1,0 +1,35 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2023-04-27 10:55:01.412217",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"columns\":[{\"label\":\"Invoice\",\"fieldname\":\"invoice\",\"fieldtype\":\"Link\",\"options\":\"Sales Invoice\",\"width\":180,\"id\":\"invoice\",\"name\":\"Invoice\",\"editable\":false,\"compareValue\":null},{\"label\":\"Customer Name\",\"fieldname\":\"customer_name\",\"fieldtype\":\"Data\",\"width\":200,\"id\":\"customer_name\",\"name\":\"Customer Name\",\"editable\":false,\"compareValue\":null},{\"fieldname\":\"contact_mobile\",\"field\":\"contact_mobile\",\"fieldtype\":\"Small Text\",\"label\":\"Mobile No\",\"insert_after_index\":3,\"link_field\":\"invoice\",\"doctype\":\"Sales Invoice\",\"width\":200,\"id\":\"contact_mobile\",\"name\":\"Mobile No\",\"editable\":false,\"compareValue\":null},{\"label\":\"Mode Of Payment\",\"fieldname\":\"mode_of_payment\",\"fieldtype\":\"Data\",\"width\":150,\"id\":\"mode_of_payment\",\"name\":\"Mode Of Payment\",\"editable\":false,\"compareValue\":null},{\"label\":\"Outstanding Amount\",\"fieldname\":\"outstanding_amount\",\"fieldtype\":\"Currency\",\"options\":\"currency\",\"width\":150,\"id\":\"outstanding_amount\",\"name\":\"Outstanding Amount\",\"editable\":false,\"compareValue\":null},{\"label\":\"Rounded Total\",\"fieldname\":\"rounded_total\",\"fieldtype\":\"Currency\",\"options\":\"currency\",\"width\":150,\"id\":\"rounded_total\",\"name\":\"Rounded Total\",\"editable\":false,\"compareValue\":null},{\"label\":\"Owner\",\"fieldname\":\"owner\",\"fieldtype\":\"Data\",\"width\":200,\"id\":\"owner\",\"name\":\"Owner\",\"editable\":false,\"compareValue\":null}]}",
+ "letter_head": "VSN Billing",
+ "modified": "2023-04-27 10:56:42.645260",
+ "modified_by": "Administrator",
+ "module": "Vsnricemill",
+ "name": "Sales Day Book",
+ "owner": "thirvusoft@gmail.com",
+ "prepared_report": 0,
+ "ref_doctype": "Sales Invoice",
+ "reference_report": "Sales Register",
+ "report_name": "Sales Day Book",
+ "report_type": "Custom Report",
+ "roles": [
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Sales User"
+  }
+ ]
+}
