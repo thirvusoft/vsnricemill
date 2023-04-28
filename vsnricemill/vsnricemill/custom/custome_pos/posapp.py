@@ -58,24 +58,6 @@ def get_opening_dialog_data():
 
     return data
 
-@frappe.whitelist()
-def get_fields_for_denomination(pos_opening_shift):
-    pos_opening_shift=frappe.get_doc("POS Opening Shift",pos_opening_shift)
-    ts_mode_of_payment=[]
-    for i in pos_opening_shift.balance_details:
-        ts_mode_of_payment_type=frappe.get_doc("Mode of Payment",i.mode_of_payment)
-        if ts_mode_of_payment_type.type != "Cash":
-            row = frappe._dict()
-            row.update({'ts_type':i.mode_of_payment})
-            ts_mode_of_payment.append(row)
-        if ts_mode_of_payment_type.type == "Cash":
-            amounts = frappe.get_all("Denomination Rupees", pluck = 'amount',order_by = '`amount` desc')
-            ts_denomination=[]
-            for i in amounts:
-                row = frappe._dict()
-                row.update({'ts_amount':i})
-                ts_denomination.append(row)
-    return ts_denomination,
     
 @frappe.whitelist()
 def create_opening_voucher(pos_profile, company, balance_details):
