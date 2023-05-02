@@ -144,7 +144,6 @@
               
               evntBus.$emit('open_ClosingDialog', r.message);
             } else {
-              console.log(r);
             }
           });
       },
@@ -164,7 +163,6 @@
               });
               this.check_opening_entry();
             } else {
-              console.log(r);
             }
           });
       },
