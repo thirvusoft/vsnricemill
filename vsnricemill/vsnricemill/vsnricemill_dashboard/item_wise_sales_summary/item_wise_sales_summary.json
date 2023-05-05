@@ -1,0 +1,21 @@
+{
+ "cards": [],
+ "charts": [
+  {
+   "chart": "Item wise Sales Summary",
+   "width": "Full"
+  }
+ ],
+ "creation": "2023-04-28 13:01:42.432166",
+ "dashboard_name": "Item Wise Sales Summary",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 1,
+ "is_standard": 1,
+ "modified": "2023-04-28 13:03:35.116451",
+ "modified_by": "Administrator",
+ "module": "Vsnricemill",
+ "name": "Item Wise Sales Summary",
+ "owner": "Administrator"
+}

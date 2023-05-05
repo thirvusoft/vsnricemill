@@ -109,7 +109,8 @@ doc_events = {
                		 "vsnricemill.vsnricemill.custom.py.sales_invoice.is_opening_name",
                      "vsnricemill.vsnricemill.custom.py.sales_invoice.counter_sales"],
         "validate" : ["vsnricemill.vsnricemill.custom.py.sales_invoice.validate",
-                      "vsnricemill.vsnricemill.custom.py.sales_invoice.loyalty_validate"
+                      "vsnricemill.vsnricemill.custom.py.sales_invoice.loyalty_validate",
+                      "vsnricemill.vsnricemill.custom.py.sales_invoice.customer_outstanding_amount"
 					  ]
 	},
     "Payment Entry": {
