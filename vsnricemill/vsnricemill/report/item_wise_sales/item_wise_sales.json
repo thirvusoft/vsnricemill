@@ -1,21 +1,27 @@
 {
- "add_total_row": 1,
+ "add_total_row": 0,
  "columns": [
   {
-   "fieldname": "invoice_no",
+   "fieldname": "item_name",
    "fieldtype": "Link",
-   "label": "Invoice No",
-   "options": "Sales Invoice",
+   "label": "Item Name",
+   "options": "Item",
    "width": 300
   },
   {
-   "fieldname": "outstanding_amount",
-   "fieldtype": "Currency",
-   "label": "Outstanding Amount",
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "label": "Qty",
+   "width": 300
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Float",
+   "label": "Amount",
    "width": 300
   }
  ],
- "creation": "2023-05-03 18:10:25.718554",
+ "creation": "2023-04-28 12:50:16.938862",
  "disable_prepared_report": 0,
  "disabled": 0,
  "docstatus": 0,
@@ -26,6 +32,7 @@
    "fieldtype": "Date",
    "label": "From Date",
    "mandatory": 1,
+   "options": "",
    "wildcard_filter": 0
   },
   {
@@ -33,6 +40,7 @@
    "fieldtype": "Date",
    "label": "To Date",
    "mandatory": 1,
+   "options": "",
    "wildcard_filter": 0
   },
   {
@@ -47,15 +55,15 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "VSN Billing",
- "modified": "2023-05-03 18:11:15.533576",
+ "modified": "2023-04-28 14:08:43.175335",
  "modified_by": "Administrator",
  "module": "Vsnricemill",
- "name": "Credit Sales Report",
+ "name": "item wise sales",
  "owner": "Administrator",
  "prepared_report": 0,
- "query": "SELECT si.name as invoice_no, si.outstanding_amount as outstanding_amount\nFROM `tabSales Invoice` si\nWHERE si.docstatus != 2 \nAND si.company = %(company)s\nAND si.is_pos =0\nAND si.status != \"Paid\"\nAND si.posting_date BETWEEN %(from_date)s AND %(to_date)s\n",
+ "query": "SELECT sii.item_name as item_name, SUM(sii.qty) as qty, SUM(sii.amount) as amount\nFROM `tabSales Invoice` si\nLEFT JOIN `tabSales Invoice Item` sii ON sii.parent = si.name\nWHERE si.docstatus != 2 \nAND si.company = %(company)s\nAND si.posting_date BETWEEN %(from_date)s AND %(to_date)s\nGROUP BY sii.item_name;\n\n",
  "ref_doctype": "Sales Invoice",
- "report_name": "Credit Sales Report",
+ "report_name": "item wise sales",
  "report_type": "Query Report",
  "roles": [
   {

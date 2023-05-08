@@ -24,7 +24,7 @@
    "is_query_report": 1,
    "label": "Sales Register",
    "link_count": 0,
-   "link_to": "Common Sales Register",
+   "link_to": "Daily Sales Register",
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
@@ -34,14 +34,14 @@
    "is_query_report": 1,
    "label": "Item Wise Sales Register",
    "link_count": 0,
-   "link_to": "Item-wise Sales Register",
+   "link_to": "Item Wise Sales Register",
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-04-26 10:16:54.952056",
- "modified_by": "thirvusoft@gmail.com",
+ "modified": "2023-04-27 17:12:43.512181",
+ "modified_by": "Administrator",
  "module": "Sales user",
  "name": "Sales User",
  "number_cards": [],

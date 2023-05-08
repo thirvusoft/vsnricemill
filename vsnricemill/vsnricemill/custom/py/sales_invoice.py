@@ -67,6 +67,12 @@ def loyalty_validate(doc,event):
      loyalty_points = data_point['loyalty_points']
      doc.existing_loyalty_point = loyalty_points
 
+def customer_outstanding_amount(self, action=None):
+    customer = self.customer
+    out_standing_amount=sum(frappe.get_list("Sales Invoice",filters={"customer":customer,"docstatus":1},pluck= "outstanding_amount"))
+    self.customer_out_standing = out_standing_amount
+    
+
 # def denomination_on_load(doc, actions):
 #     if doc.posa_pos_opening_shift:
 #         try:
