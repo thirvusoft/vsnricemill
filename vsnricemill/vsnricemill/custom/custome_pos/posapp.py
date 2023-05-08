@@ -58,7 +58,7 @@ def get_opening_dialog_data():
 
     return data
 
-
+    
 @frappe.whitelist()
 def create_opening_voucher(pos_profile, company, balance_details):
     balance_details = json.loads(balance_details)

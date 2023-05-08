@@ -67,8 +67,62 @@ def loyalty_validate(doc,event):
      loyalty_points = data_point['loyalty_points']
      doc.existing_loyalty_point = loyalty_points
 
+# def denomination_on_load(doc, actions):
+#     if doc.posa_pos_opening_shift:
+#         try:
+#             opening_shift = frappe.get_doc("POS Opening Shift", doc.posa_pos_opening_shift)
+#         except Exception as e:
+#             frappe.log_error(f"Error fetching POS Opening Shift: {e}")
+#             return      
+#         # create a dictionary of denomination counts
+#         paid = {}
+#         chang = {}
+#         # for m in opening_shift.denomination_table:
+#         #     counts[m.currency] = m.count
+            
+#         # update the counts based on paid denominations
+#         for i in doc.paid_denomination:
+#             if i.currency in paid:
+#                 paid[i.currency] += i.count
+#             else:
+#                 paid[i.currency] = i.count
+#         for c in doc.change_denomination:
+#             if c:
+#                 if c.currency in chang:
+#                     chang[c.currency ] += c.count
+#                 else:
+#                     chang[c.currency] = c.count
+        
+#         # update the denomination_table list based on the updated counts
+#         for m in opening_shift.denomination_table:
+#             if m.currency in paid:
+#                 m.count += (paid[m.currency] - chang[m.currency])
+#                 m.amount = m.currency * m.count
+                
+#         opening_shift.save()
+#     else:
+#         return
+
+# def cancel_denomination(doc,actions):
+#     if doc.posa_pos_opening_shift:
+#         cancel_opening_shift = frappe.get_doc("POS Opening Shift", doc.posa_pos_opening_shift)
+#         for i in doc.paid_denomination:
+#             for m in cancel_opening_shift.denomination_table:
+#                 if i.currency == m.currency:
+#                     m.count = m.count - i.count
+#                     m.amount = m.amount - i.amount
+        
+
+# def print_name(doc,actions):
+#    for i in doc.items:
+#       variant = frappe.db.get_value("Item Variant Attribute",{"parent":i.item_code,"attribute":"Rice"},"attribute_value")
+#       if variant:
+#         r_vaiant = i.item_code.replace(variant, "")
+#         new_print_name = r_vaiant.replace("  "," ")
+#         i.print_name = new_print_name
+        
+       
 def customer_outstanding_amount(self, action=None):
     customer = self.customer
     out_standing_amount=sum(frappe.get_list("Sales Invoice",filters={"customer":customer,"docstatus":1},pluck= "outstanding_amount"))
     self.customer_out_standing = out_standing_amount
-    
