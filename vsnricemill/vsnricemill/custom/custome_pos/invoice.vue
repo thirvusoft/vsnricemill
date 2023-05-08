@@ -1220,9 +1220,12 @@ export default {
         return this.update_invoice(doc);
       }
     },
-
+    opendialog(){
+      evntBus.$emit('open_denomination' , this.invoice_doc);
+      console.log(this.invoice_doc)
+    },
     show_payment() {
-      if (!this.customer) {
+      if (!this.customer) {      
         evntBus.$emit('show_mesage', {
           text: __(`There is no Customer !`),
           color: 'error',
@@ -1242,6 +1245,7 @@ export default {
       evntBus.$emit('show_payment', 'true');
       const invoice_doc = this.proces_invoice();
       evntBus.$emit('send_invoice_doc_payment', invoice_doc);
+      this.opendialog()
     },
 
     validate() {

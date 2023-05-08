@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="draftsDialog" max-width="900px">
+    <v-dialog v-model="draftsDialog" max-width="700px">
       <!-- <template v-slot:activator="{ on, attrs }">
         <v-btn color="primary" dark v-bind="attrs" v-on="on">Open Dialog</v-btn>
       </template>-->
@@ -20,20 +20,20 @@
                 <v-simple-table>
                     <template v-slot:default>
                       <thead>
-                        <tr>
-                          <th class="text-center" width='50px'>
+                        <tr style = "border: 1px solid black;">
+                          <th class="text-center" width='20px'>
                             Currency
                           </th>
-                          <th class="text-center" width='50px'>
+                          <th class="text-center" width='20px'>
                             Count
                           </th>
-                          <th class="text-center" width='50px'>
+                          <th class="text-center" width='20px'>
                             Amount
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr
+                        <tr style = "border: 1px solid black;"
                         v-for="items in denomination_data"
                         :key="items.currency">
                           <td><v-text-field placeholder="Currency" v-model="items.currency" dense readonly></v-text-field></td>
@@ -46,73 +46,12 @@
               </template>
 
             </v-col>
-              <v-col cols="12">
-              <template>
 
-                <v-row>
-                  <v-col cols = 3>
-                    <v-text-field
-                    dense
-                    outlined
-                    color="primary"
-                    :label="frappe._('Bill Amount')"
-                    background-color="white"
-                    hide-details
-                    v-model="grand_amount"
-                  
-                    type="number"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols = 3>
-                  <v-text-field
-                    dense
-                    outlined
-                    color="primary"
-                    :label="frappe._('Paid Amount')"
-                    background-color="white"
-                    hide-details
-                    v-model="total_amount"
-                  
-                    type="number"
-                  ></v-text-field>
-                </v-col>
-
-                <v-col cols = 3>
-                  <v-text-field
-                    dense
-                    outlined
-                    color="primary"
-                    :label="frappe._('Balance')"
-                    background-color="white"
-                    hide-details
-                    v-model="diff_amount"
-                    
-                  
-                    type="number"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols = 3>
-                  <v-text-field
-                    dense
-                    outlined
-                    color="primary"
-                    :label="frappe._('Change Given')"
-                    background-color="white"
-                    hide-details
-                    v-model="change_total_amount"
-                    
-                    type="number"
-                   
-                  ></v-text-field>
-                </v-col>
-                </v-row>
-              </template>
-              </v-col>
             </v-col>
             <!-- </v-container>
 
             <v-container> -->
-            <v-col cols = 6>
+            <v-col cols = 6 style="max-width: 48%;padding: 20px;">
           <!-- <v-card-title> -->
 
           <span class="headline primary--text">{{
@@ -123,23 +62,28 @@
                 <v-simple-table>
                     <template v-slot:default>
                       <thead>
-                        <tr>
-                          <th class="text-center" width='50px'>
+                        <tr style = "border: 1px solid black;">
+                          <th class="text-center" maxwidth='20px'>
                             Currency
                           </th>
-                          <th class="text-center" width='50px'>
+                          <th class="text-center" maxwidth='20px'>
+                            Amount in Hand
+                          </th>
+                          <th class="text-center" maxwidth='20px'>
                             Count
                           </th>
-                          <th class="text-center" width='50px'>
+                          <th class="text-center" maxwidth='20px'>
                             Amount
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr
+                        <tr style = "border: 1px solid black;"
                         v-for="items in change_denomination_data"
                         :key="items.currency">
-                          <td><v-text-field placeholder="Currency" v-model="items.currency" dense readonly></v-text-field></td>
+                          <td><v-text-field placeholder="Currency" v-model="items.currency" dense readonly style = "content: none"></v-text-field></td>
+                          <td><v-text-field placeholder="Amount in Hand" v-model="items.hand" dense readonly ></v-text-field></td>
+
                           <td><v-text-field placeholder="Count" v-model="items.count" dense @change="change_update_amount($event,items)"></v-text-field></td>
                           <td><v-text-field placeholder="Amount" v-model="items.amount" dense readonly></v-text-field></td>
                         </tr>
@@ -155,7 +99,65 @@
       
 
         </v-row>
-       
+        <v-col cols="12">
+              <template>
+
+                <v-row>
+                  <v-col cols = 3>
+                    <v-text-field
+                    dense
+                    outlined
+                    color="primary"
+                    :label="frappe._('Bill Amount')"
+                    background-color="white"
+                    hide-details
+                    v-model="grand_amount" 
+                  
+                  ></v-text-field>
+                </v-col>
+                <v-col cols = 3>
+                  <v-text-field
+                    dense
+                    outlined
+                    color="primary"
+                    :label="frappe._('Paid Amount')"
+                    background-color="white"
+                    hide-details
+                    v-model="total_amount"
+                  
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols = 3>
+                  <v-text-field
+                    dense
+                    outlined
+                    color="primary"
+                    :label="frappe._('Balance ')"
+                    background-color="white"
+                    hide-details
+                    v-model="diff_amount"
+                    
+                  
+                  ></v-text-field>
+                </v-col>
+ 
+                <v-col cols = 3>
+                  <v-text-field
+                    dense
+                    outlined
+                    color="primary"
+                    :label="frappe._('Change Given')"
+                    background-color="white"
+                    hide-details
+                    v-model="change_total_amount"
+      
+                   
+                  ></v-text-field>
+                </v-col>
+                </v-row>
+              </template>
+              </v-col>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="error" dark @click="close_dialog">Close</v-btn>
@@ -211,6 +213,13 @@ export default {
       value: 'currency',
     },
     {
+      text: __('Amount in Hand'),
+      value: 'hand',
+      align: 'center',
+      sortable: false,
+      
+    },
+    {
       text: __('Count'),
       value: 'count',
       align: 'center',
@@ -244,11 +253,12 @@ export default {
     this.actual_amt = 0
     this.denomination_data.forEach((data) =>{
       this.total_amount += data.amount
-      console.log(this.total_amount)
-      this.diff_amount = this.total_amount - this.grand_amount
-      this.actual_amt =  this.diff_amount
+
       
     })
+    this.diff_amount = this.grand_amount - this.total_amount 
+     
+     this.actual_amt =  this.diff_amount
 
   },
   change_update_amount(value,row){
@@ -260,7 +270,7 @@ export default {
       
 
     })
-    this.diff_amount = this.change_total_amount - this.actual_amt
+    this.diff_amount = this.actual_amt +  this.change_total_amount 
 
 
   },
@@ -283,6 +293,7 @@ export default {
           this.denomination_data = []
           this.grand_amount = 0
           this.diff_amount = 0
+          this.total_amount = 0
           this.change_total_amount = 0
           this.currency.forEach((i) => {
       this.denomination_data.push(   {
@@ -291,6 +302,7 @@ export default {
       "amount":0
     },)
   })
+
   this.change_currency.forEach((i) => {
       this.change_denomination_data.push(   {
       "currency":i,
@@ -305,26 +317,36 @@ export default {
 
     },
   },
+  
   created: function () {
     evntBus.$on('open_denomination', (data) => {
       this.grand_amount = data.grand_total
       this.invoice = data
-  this.draftsDialog = true;
+    frappe.db.get_doc('POS Opening Shift', this.invoice.posa_pos_opening_shift).then((doc) => {
+      this.change_denomination_data = []
+      doc.denomination_table.forEach((i) => {
+        this.change_denomination_data.push(   {
+          "currency":i.currency,
+          "hand" : i.count,
+          "count":0,
+          "amount":0
+        },)
+    })
+    this.denomination_data = []
+        this.currency.forEach((i) => {
+          this.denomination_data.push(   {
+        "currency":i,
+        "count":0,
+        "amount":0
+      },)
+        
+      })
     });
-    this.currency.forEach((i) => {
-      this.denomination_data.push(   {
-      "currency":i,
-      "count":0,
-      "amount":0
-    },)
-  })
-  this.change_currency.forEach((i) => {
-      this.change_denomination_data.push(   {
-      "currency":i,
-      "count":0,
-      "amount":0
-    },)
-  })
+    this.draftsDialog = true;
+      });
+      
+    
+
   },
 };
 </script>
