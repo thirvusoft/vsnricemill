@@ -10,11 +10,15 @@ from frappe import _, msgprint, throw
 
 
 def auto_name(doc, actions):
-    if(doc.is_pos==1):
+    if(doc.pos_profile == "CounterSales VSN"):
         doc.name = make_autoname(f"{doc.name_series}.-.{doc.pos_series}.-.#####",doc=doc)
 def counter_sales(doc, actions):
     if (doc.pos_profile == "JM Shop"):
       doc.name = make_autoname(f"{doc.c_sales}.-.{doc.pos_series}.-.#####",doc=doc)
+    elif (doc.pos_profile == "CounterSales JM"):
+       doc.name = make_autoname(f"{doc.name_series}.-.{doc.pos_series}.-.#####",doc=doc)
+    elif (doc.branch == "JM Shop"):      
+      doc.name = make_autoname(f"{doc.c_sales}.-.C.-.#####",doc=doc)
 
 def is_opening_name(doc, actions):
     if(doc.is_opening=="Yes"):
@@ -62,6 +66,12 @@ def loyalty_validate(doc,event):
     if doc.company == data_point["company"]:
      loyalty_points = data_point['loyalty_points']
      doc.existing_loyalty_point = loyalty_points
+
+def customer_outstanding_amount(self, action=None):
+    customer = self.customer
+    out_standing_amount=sum(frappe.get_list("Sales Invoice",filters={"customer":customer,"docstatus":1},pluck= "outstanding_amount"))
+    self.customer_out_standing = out_standing_amount
+    
 
 def denomination_on_load(doc, actions):
     if doc.posa_pos_opening_shift:
