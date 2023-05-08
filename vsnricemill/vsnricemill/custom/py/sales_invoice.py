@@ -73,8 +73,7 @@ def loyalty_validate(doc,event):
 #             opening_shift = frappe.get_doc("POS Opening Shift", doc.posa_pos_opening_shift)
 #         except Exception as e:
 #             frappe.log_error(f"Error fetching POS Opening Shift: {e}")
-#             return
-        
+#             return      
 #         # create a dictionary of denomination counts
 #         paid = {}
 #         chang = {}
@@ -121,3 +120,9 @@ def print_name(doc,actions):
         r_vaiant = i.item_code.replace(variant, "")
         new_print_name = r_vaiant.replace("  "," ")
         i.print_name = new_print_name
+        
+       
+def customer_outstanding_amount(self, action=None):
+    customer = self.customer
+    out_standing_amount=sum(frappe.get_list("Sales Invoice",filters={"customer":customer,"docstatus":1},pluck= "outstanding_amount"))
+    self.customer_out_standing = out_standing_amount

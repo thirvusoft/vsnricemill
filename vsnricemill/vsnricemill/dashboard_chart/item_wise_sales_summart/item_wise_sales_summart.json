@@ -1,0 +1,35 @@
+{
+ "chart_name": "Item wise Sales Summart",
+ "chart_type": "Report",
+ "creation": "2023-04-28 12:59:28.217868",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "dynamic_filters_json": "{}",
+ "filters_json": "{}",
+ "group_by_type": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "modified": "2023-04-28 13:02:54.388894",
+ "modified_by": "Administrator",
+ "module": "Vsnricemill",
+ "name": "Item wise Sales Summart",
+ "number_of_groups": 0,
+ "owner": "Administrator",
+ "report_name": "item wise sales",
+ "roles": [],
+ "time_interval": "Yearly",
+ "timeseries": 0,
+ "timespan": "Last Year",
+ "type": "Pie",
+ "use_report_chart": 0,
+ "x_field": "item_name",
+ "y_axis": [
+  {
+   "y_field": "qty"
+  },
+  {
+   "y_field": "amount"
+  }
+ ]
+}

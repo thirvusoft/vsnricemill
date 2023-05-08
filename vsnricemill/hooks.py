@@ -110,7 +110,8 @@ doc_events = {
                      "vsnricemill.vsnricemill.custom.py.sales_invoice.counter_sales"],
         "validate" : ["vsnricemill.vsnricemill.custom.py.sales_invoice.validate",
                       "vsnricemill.vsnricemill.custom.py.sales_invoice.loyalty_validate",
-                      "vsnricemill.vsnricemill.custom.py.sales_invoice.print_name"
+                      "vsnricemill.vsnricemill.custom.py.sales_invoice.print_name",
+                      "vsnricemill.vsnricemill.custom.py.sales_invoice.customer_outstanding_amount"
 					   ],
 		# "on_submit" : "vsnricemill.vsnricemill.custom.py.sales_invoice.denomination_on_load",
 		# "on_cancel" : "vsnricemill.vsnricemill.custom.py.sales_invoice.cancel_denomination"
