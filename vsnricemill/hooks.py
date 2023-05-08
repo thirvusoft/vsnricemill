@@ -104,6 +104,9 @@ after_migrate = "vsnricemill.install.after_install"
 # Hook on document methods and events
 
 doc_events = {
+    "Item":{
+      "validate":"vsnricemill.vsnricemill.custom.py.item.print_name"  
+	},
 	"Sales Invoice": {
 		"autoname": ["vsnricemill.vsnricemill.custom.py.sales_invoice.auto_name",
                		 "vsnricemill.vsnricemill.custom.py.sales_invoice.is_opening_name",
@@ -112,8 +115,8 @@ doc_events = {
                       "vsnricemill.vsnricemill.custom.py.sales_invoice.loyalty_validate",
                       "vsnricemill.vsnricemill.custom.py.sales_invoice.customer_outstanding_amount"
 					   ],
-		"on_submit" : "vsnricemill.vsnricemill.custom.py.sales_invoice.denomination_on_load",
-		"on_cancel" : "vsnricemill.vsnricemill.custom.py.sales_invoice.cancel_denomination"
+		# "on_submit" : "vsnricemill.vsnricemill.custom.py.sales_invoice.denomination_on_load",
+		# "on_cancel" : "vsnricemill.vsnricemill.custom.py.sales_invoice.cancel_denomination"
 	},
     "Payment Entry": {
     	"validate" : 	"vsnricemill.vsnricemill.custom.py.payment_entry.update",
