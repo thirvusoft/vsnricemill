@@ -67,9 +67,6 @@
                             Currency
                           </th>
                           <th class="text-center" maxwidth='20px'>
-                            Amount in Hand
-                          </th>
-                          <th class="text-center" maxwidth='20px'>
                             Count
                           </th>
                           <th class="text-center" maxwidth='20px'>
@@ -82,7 +79,6 @@
                         v-for="items in change_denomination_data"
                         :key="items.currency">
                           <td><v-text-field placeholder="Currency" v-model="items.currency" dense readonly style = "content: none"></v-text-field></td>
-                          <td><v-text-field placeholder="Amount in Hand" v-model="items.hand" dense readonly ></v-text-field></td>
 
                           <td><v-text-field placeholder="Count" v-model="items.count" dense @change="change_update_amount($event,items)"></v-text-field></td>
                           <td><v-text-field placeholder="Amount" v-model="items.amount" dense readonly></v-text-field></td>
@@ -213,13 +209,6 @@ export default {
       value: 'currency',
     },
     {
-      text: __('Amount in Hand'),
-      value: 'hand',
-      align: 'center',
-      sortable: false,
-      
-    },
-    {
       text: __('Count'),
       value: 'count',
       align: 'center',
@@ -313,7 +302,7 @@ export default {
 
         }
       });
-      // this.draftsDialog = false;
+      this.draftsDialog = false;
 
     },
   },
@@ -322,12 +311,10 @@ export default {
     evntBus.$on('open_denomination', (data) => {
       this.grand_amount = data.grand_total
       this.invoice = data
-    frappe.db.get_doc('POS Opening Shift', this.invoice.posa_pos_opening_shift).then((doc) => {
       this.change_denomination_data = []
-      doc.denomination_table.forEach((i) => {
+      this.change_currency.forEach((i) => {
         this.change_denomination_data.push(   {
-          "currency":i.currency,
-          "hand" : i.count,
+          "currency":i,
           "count":0,
           "amount":0
         },)
@@ -341,7 +328,7 @@ export default {
       },)
         
       })
-    });
+    
     this.draftsDialog = true;
       });
       
