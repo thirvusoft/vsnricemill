@@ -114,10 +114,10 @@ def loyalty_validate(doc,event):
 #                     m.amount = m.amount - i.amount
         
 
-def print_name(doc,actions):
-   for i in doc.items:
-      variant = frappe.db.get_value("Item Variant Attribute",{"parent":i.item_code,"attribute":"Rice"},"attribute_value")
-      if variant:
-        r_vaiant = i.item_code.replace(variant, "")
-        new_print_name = r_vaiant.replace("  "," ")
-        i.print_name = new_print_name
+# def print_name(doc,actions):
+#    for i in doc.items:
+#       variant = frappe.db.get_value("Item Variant Attribute",{"parent":i.item_code,"attribute":"Rice"},"attribute_value")
+#       if variant:
+#         r_vaiant = i.item_code.replace(variant, "")
+#         new_print_name = r_vaiant.replace("  "," ")
+#         i.print_name = new_print_name
