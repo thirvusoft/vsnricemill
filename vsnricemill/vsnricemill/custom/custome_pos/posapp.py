@@ -55,13 +55,29 @@ def get_opening_dialog_data():
         order_by="parent",
         ignore_permissions=True
     )
-
+    for i in data["payments_method"]:
+        i['is_cash'] = frappe.db.get_value("Mode of Payment",i['mode_of_payment'],'type') == "Cash"
     return data
 
-    
 @frappe.whitelist()
-def create_opening_voucher(pos_profile, company, balance_details):
+def sales_invocie_denomination(sales_invoice_doc,denomination_data,change_denomination_data):
+    denomination_data = json.loads(denomination_data)
+    change_denomination_data = json.loads(change_denomination_data)
+    sales_invoice_doc = json.loads(sales_invoice_doc)
+    sales_invocie = frappe.get_doc(
+        "Sales Invoice",
+            sales_invoice_doc.get('name')
+    
+    )
+    sales_invocie.update(sales_invoice_doc)
+    sales_invocie.set("paid_denomination", denomination_data)
+    sales_invocie.set("change_denomination", change_denomination_data)
+    sales_invocie.save(ignore_permissions=True)
+    return sales_invocie
+@frappe.whitelist()
+def create_opening_voucher(pos_profile, company, balance_details, denomination_data):
     balance_details = json.loads(balance_details)
+    denomination_data = json.loads(denomination_data)
 
     new_pos_opening = frappe.get_doc(
         {
@@ -75,6 +91,7 @@ def create_opening_voucher(pos_profile, company, balance_details):
         }
     )
     new_pos_opening.set("balance_details", balance_details)
+    new_pos_opening.set("denomination_table", denomination_data)
     new_pos_opening.insert(ignore_permissions=True)
 
     data = {}
@@ -541,7 +558,6 @@ def set_batch_nos_for_bundels(doc, warehouse_field, throw=False):
                         ).format(d.idx, d.batch_no, batch_qty, qty)
                     )
 
-
 def redeeming_customer_credit(
     invoice_doc, data, is_payment_entry, total_cash, cash_account
 ):
@@ -835,25 +851,27 @@ def get_stock_availability(item_code, warehouse):
     return actual_qty
 
 
-@frappe.whitelist()
+@frappe.whitelist() #core code
 def create_customer(
     customer_name,
     company,
-    tax_id,
+    billing_name,
     mobile_no,
     email_id,
     referral_code=None,
     birthday=None,
     customer_group=None,
     territory=None,
+    customer_id = None,
 ):
-    if not frappe.db.exists("Customer", {"customer_name": customer_name}):
+    loyalty = frappe.get_value("Loyalty Program",{"is_default":1},"name")
+    if not frappe.db.exists("Customer", {"customer_name": customer_id}):
         customer = frappe.get_doc(
             {
                 "doctype": "Customer",
                 "customer_name": customer_name,
+                "billing_name":billing_name,
                 "posa_referral_company": company,
-                "tax_id": tax_id,
                 "mobile_no": mobile_no,
                 "email_id": email_id,
                 "posa_referral_code": referral_code,
@@ -868,6 +886,8 @@ def create_customer(
             customer.territory = territory
         else:
             customer.territory = "All Territories"
+        if loyalty:
+            customer.loyalty_program = loyalty
         customer.save()
         return customer
     else:
@@ -1473,4 +1493,22 @@ def get_applicable_delivery_charges(
 @frappe.whitelist()
 def get_items_():
     return frappe.db.get_list("Brand",pluck = "name")
-    
+
+@frappe.whitelist()
+def get_fields_for_denomination(pos_opening_shift):
+    pos_opening_shift=frappe.get_doc("POS Opening Shift",pos_opening_shift)
+    ts_mode_of_payment=[]
+    for i in pos_opening_shift.balance_details:
+        ts_mode_of_payment_type=frappe.get_doc("Mode of Payment",i.mode_of_payment)
+        if ts_mode_of_payment_type.type != "Cash":
+            row = frappe._dict()
+            row.update({'ts_type':i.mode_of_payment})
+            ts_mode_of_payment.append(row)
+        if ts_mode_of_payment_type.type == "Cash":
+            amounts = frappe.get_all("Denomination Rupees", pluck = 'amount',order_by = '`amount` desc')
+            ts_denomination=[]
+            for i in amounts:
+                row = frappe._dict()
+                row.update({'ts_amount':i})
+                ts_denomination.append(row)
+    return ts_denomination,
