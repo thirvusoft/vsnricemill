@@ -178,7 +178,8 @@
             <v-btn color="error" dark @click="close_dialog">{{
               __('Close')
             }}</v-btn>
-            <v-btn color="success" dark @click="submit_dialog">{{
+            
+            <v-btn color="success" dark @click="submit_dialog">{{ 
               __('Submit')
             }}</v-btn>
           </v-card-actions>
