@@ -43,6 +43,7 @@ def get_data(filters={}):
 		FROM `tabSales Invoice` si
 		LEFT JOIN `tabSales Invoice Item` sii ON sii.parent = si.name
 		WHERE si.docstatus != 2 
+		AND si.is_pos = 1
 		AND si.company = '{filters.get('company')}'
 		AND si.posting_date BETWEEN '{filters.get('posting_date')}' AND '{filters.get('to_date')}'
 		{condition}
