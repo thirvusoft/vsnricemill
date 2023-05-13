@@ -115,6 +115,8 @@ doc_events = {
                       "vsnricemill.vsnricemill.custom.py.sales_invoice.loyalty_validate",
                       "vsnricemill.vsnricemill.custom.py.sales_invoice.customer_outstanding_amount"
 					   ],
+        "on_update_after_submit"  :  "vsnricemill.vsnricemill.custom.py.sales_invoice.customer_outstanding_amount",
+        "before_submit" : "vsnricemill.vsnricemill.custom.py.sales_invoice.customer_outstanding_amount",
 		# "on_submit" : "vsnricemill.vsnricemill.custom.py.sales_invoice.denomination_on_load",
 		# "on_cancel" : "vsnricemill.vsnricemill.custom.py.sales_invoice.cancel_denomination"
 	},
@@ -124,9 +126,6 @@ doc_events = {
     "Journal Entry" : {
 		"validate" : "vsnricemill.vsnricemill.custom.py.journal_entry.update"
 	},
-    "Customer" : {
-		"validate" : "vsnricemill.vsnricemill.custom.py.customer.captilized_name"
-	}
 }
 
 # Scheduled Tasks
