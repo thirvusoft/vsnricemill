@@ -41,7 +41,7 @@
    "is_query_report": 1,
    "label": "Item wise Sales summary",
    "link_count": 0,
-   "link_to": "item wise sales",
+   "link_to": "Item Wise Sales History",
    "link_type": "Report",
    "onboard": 1,
    "type": "Link"
@@ -67,7 +67,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-05-04 09:25:12.808259",
+ "modified": "2023-05-13 10:55:05.946624",
  "modified_by": "Administrator",
  "module": "Vsnricemill",
  "name": "Sales",
