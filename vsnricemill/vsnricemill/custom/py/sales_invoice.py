@@ -126,5 +126,8 @@ def loyalty_validate(doc,event):
         
        
 def customer_outstanding_amount(self, action=None):
-    customer = self.customer    
-    self.customer_out_standing = get_customer_outstanding(customer,self.company)
+    customer = self.customer  
+    self.customer_out_standing = get_customer_outstanding(customer,self.company) 
+    if action == "before_submit":
+        self.customer_out_standing += self.outstanding_amount
+    
