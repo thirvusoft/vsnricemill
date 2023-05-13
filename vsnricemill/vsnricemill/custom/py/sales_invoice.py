@@ -1,6 +1,7 @@
 import json
 from erpnext.accounts.doctype.loyalty_program.loyalty_program import get_loyalty_program_details_with_points
 from erpnext.accounts.doctype.sales_invoice.sales_invoice import SalesInvoice, update_linked_doc
+from erpnext.selling.doctype.customer.customer import get_customer_outstanding
 from erpnext.setup.doctype.company.company import update_company_current_month_sales
 from erpnext.stock.doctype.serial_no.serial_no import update_serial_nos_after_submit
 import frappe
@@ -125,6 +126,5 @@ def loyalty_validate(doc,event):
         
        
 def customer_outstanding_amount(self, action=None):
-    customer = self.customer
-    out_standing_amount=sum(frappe.get_list("Sales Invoice",filters={"customer":customer,"docstatus":1},pluck= "outstanding_amount"))
-    self.customer_out_standing = out_standing_amount
+    customer = self.customer    
+    self.customer_out_standing = get_customer_outstanding(customer,self.company)
