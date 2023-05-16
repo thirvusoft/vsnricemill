@@ -5,18 +5,18 @@
 frappe.query_reports["Item Wise Sales History"] = {
 	"filters": [
 		{
+			"fieldname":"branch",
+			"label": __("Branch"),
+			"fieldtype": "Link",
+			"options": "Branch",
+		},
+		{
 			"fieldname":"company",
 			"label": __("Company"),
 			"fieldtype": "Link",
 			"options": "Company",
 			"reqd": 1,
             
-		},
-		{
-			"fieldname":"branch",
-			"label": __("Branch"),
-			"fieldtype": "Link",
-			"options": "Branch",
 		},
 		{
 			"fieldname":"posting_date",
