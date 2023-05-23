@@ -91,14 +91,16 @@ frappe.query_reports["Consolidated Day Book"] = {
 		{
 			'fieldname':'branch',
 			'label':'Branch',
-			'fieldtype':'MultiSelectList',
-			get_data: function(txt) {
-				return frappe.db.get_link_options("Branch", txt, {
-					company: frappe.query_report.get_filter_value("company")
-				});
-			},
-			// 'hidden':frappe.defaults.get_user_permissions()['Branch']?1:0,
+			'fieldtype':'Link',
+			'options': 'Branch'
+		},
+		{
+			'fieldname':'sales_type',
+			'label':'Sales Type',
+			'fieldtype':'Select',
+			'options': '\nCredit\nRetail\nOpening'
 		}
+
 				
 	],
 	"formatter": function (value, row, column, data, default_formatter) {
@@ -114,10 +116,3 @@ frappe.query_reports["Consolidated Day Book"] = {
 		return value;
 	},
 };
-
-setTimeout(()=>{
-	frappe.query_report.set_filter_value('branch', frappe.defaults.get_user_permissions()['Branch']?frappe.defaults.get_user_permissions()['Branch'][0].doc:'') 
-	if(frappe.defaults.get_user_permissions()['Branch']){
-		document.querySelector('div[data-fieldname="branch"]').classList.add('hidden') 
-	}
-},100)
