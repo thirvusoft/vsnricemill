@@ -15,7 +15,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Sales Register",
-   "link_count": 2,
+   "link_count": 3,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -38,9 +38,19 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Item Wise Sales Summary",
+   "link_count": 0,
+   "link_to": "Item Wise Sales History",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-04-27 17:12:43.512181",
+ "modified": "2023-05-15 10:50:33.655832",
  "modified_by": "Administrator",
  "module": "Sales user",
  "name": "Sales User",

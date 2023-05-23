@@ -1,5 +1,5 @@
 {
- "add_total_row": 1,
+ "add_total_row": 0,
  "columns": [],
  "creation": "2023-05-16 11:24:36.153911",
  "disable_prepared_report": 0,
@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "VSN Billing",
- "modified": "2023-05-16 11:31:31.218618",
+ "modified": "2023-05-16 11:44:19.943255",
  "modified_by": "Administrator",
  "module": "Vsnricemill",
  "name": "Journal Entry Expense Report",

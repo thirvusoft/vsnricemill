@@ -53,7 +53,7 @@ def execute(filters=None):
 
 def update_translations():
 	TRANSLATIONS.update(
-		dict(OPENING=_("Opening"), TOTAL=_("Total"), CLOSING_TOTAL=_("Closing (Opening + Total)"))
+		dict(OPENING=_(""), TOTAL=_(""), CLOSING_TOTAL=_(""))
 	)
 
 
