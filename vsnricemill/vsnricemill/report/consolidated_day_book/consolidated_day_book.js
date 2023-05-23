@@ -92,8 +92,15 @@ frappe.query_reports["Consolidated Day Book"] = {
 			'fieldname':'branch',
 			'label':'Branch',
 			'fieldtype':'Link',
-			'options' : 'Branch'
+			'options': 'Branch'
+		},
+		{
+			'fieldname':'sales_type',
+			'label':'Sales Type',
+			'fieldtype':'Select',
+			'options': '\nCredit\nRetail\nOpening'
 		}
+
 				
 	],
 	"formatter": function (value, row, column, data, default_formatter) {
