@@ -119,7 +119,7 @@ def get_sales_invoice_data(filters={}):
     
 
     if(filters.get('branch')):
-        conditions += f''' and branch in ('{"', '".join(filters['branch'])}') '''
+        conditions += f''' and branch in ('{filters['branch']}') '''
     
 
     sales_invoices = frappe.db.sql(f"""
@@ -155,7 +155,7 @@ def get_purchase_invoice_data(filters={}):
     
 
     if(filters.get('branch')):
-        conditions += f''' and branch in ('{"', '".join(filters['branch'])}') '''
+        conditions += f''' and branch in ('{filters['branch']}') '''
     
 
     purchase_invoice = frappe.db.sql(f"""
@@ -192,7 +192,7 @@ def get_payment_entry_data(filters={}):
     
 
     if(filters.get('branch')):
-        conditions += f''' and branch in ('{"', '".join(filters['branch'])}') '''
+        conditions += f''' and branch in ('{filters['branch']}') '''
     
     party_types = frappe.db.sql(f"""
         SELECT 
@@ -248,7 +248,7 @@ def get_journal_entry_data(filters = {}):
     
 
     if(filters.get('branch')):
-        conditions += f''' and branch in ('{"', '".join(filters['branch'])}') '''
+        conditions += f''' and branch in ('{filters['branch']}') '''
     
 
     journal_entry = frappe.db.sql(f"""
