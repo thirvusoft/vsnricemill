@@ -25,13 +25,14 @@ def get_columns(filters={}):
 			"hidden": 1,
 		},
          {"label": _("Voucher Type"), "fieldname": "voucher_type", "width": 150},
+         {"label": _("Voucher Type"), "fieldname": "doc_type", "width": 150, "hidden":1},
 		{"label": _("Posting Date"), "fieldname": "posting_date", "fieldtype": "Date", "width": 150},
        
         {
             "label": _("Voucher No"),
             "fieldname": "voucher_no",
             "fieldtype": "Dynamic Link",
-            "options": "voucher_type",
+            "options": "doc_type",
             "width": 180,
         },
              {
@@ -131,7 +132,7 @@ def get_sales_invoice_data(filters={}):
     
 
     sales_invoices = frappe.db.sql(f"""
-        SELECT gl.name, gl.posting_date, gl.party, gl.party_type, gl.voucher_no, gl.debit, gl.credit, si.is_pos, (Select mobile_no from `tabCustomer` where name = gl.party) as mobile_no
+        SELECT gl.name,gl.voucher_type as doc_type, gl.posting_date, gl.party, gl.party_type, gl.voucher_no, gl.debit, gl.credit, si.is_pos, (Select mobile_no from `tabCustomer` where name = gl.party) as mobile_no
         FROM `tabGL Entry` gl
         LEFT JOIN `tabSales Invoice` si ON si.name = gl.voucher_no
         WHERE {conditions}
@@ -172,7 +173,7 @@ def get_purchase_invoice_data(filters={}):
     
 
     purchase_invoice = frappe.db.sql(f"""
-        SELECT name, posting_date, party, party_type, voucher_no, debit, credit, (Select mobile_no from `tabSupplier` where name = gl.party) as mobile_no
+        SELECT name,voucher_type as doc_type,  posting_date, party, party_type, voucher_no, debit, credit, (Select mobile_no from `tabSupplier` where name = gl.party) as mobile_no
         FROM `tabGL Entry` gl
         WHERE {conditions}
          ORDER BY posting_date;
@@ -224,6 +225,7 @@ def get_payment_entry_data(filters={}):
     """
     payment_entry = frappe.db.sql(f"""
         SELECT 
+            voucher_type as doc_type, 
             name, 
             posting_date, 
             party, 
@@ -273,7 +275,7 @@ def get_journal_entry_data(filters = {}):
     
 
     journal_entry = frappe.db.sql(f"""
-        SELECT name, posting_date, party, party_type, voucher_no, debit, credit, remarks, (Select mobile_no from `tabCustomer` where name = gl.party) as mobile_no
+        SELECT name, voucher_type as doc_type, posting_date, party, party_type, voucher_no, debit, credit, remarks, (Select mobile_no from `tabCustomer` where name = gl.party) as mobile_no
         FROM `tabGL Entry` gl
         WHERE {conditions}
          ORDER BY posting_date;
