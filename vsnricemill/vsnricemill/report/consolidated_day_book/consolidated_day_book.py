@@ -259,7 +259,7 @@ def get_payment_entry_data(filters={}):
     return [{'indent':0, 'voucher_type':'Payment Entry', 'credit':0, 'debit':0}] + payment_entry + [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c}]
 
 def get_journal_entry_data(filters = {}):
-    conditions = f'''voucher_type = 'Journal Entry' and debit>0  and is_cancelled = 0 '''
+    conditions = f'''voucher_type = 'Journal Entry'  and is_cancelled = 0 '''
 
     if(filters.get('company')):
         conditions += f''' and company = '{filters['company']}' '''
@@ -281,7 +281,7 @@ def get_journal_entry_data(filters = {}):
     
 
     journal_entry = frappe.db.sql(f"""
-        SELECT name, voucher_type as doc_type, posting_date, party, party_type,voucher_no, debit, credit, remarks, against as account_head, (Select mobile_no from `tabCustomer` where name = gl.party) as mobile_no
+        SELECT name, voucher_type as doc_type, posting_date, party, party_type,voucher_no, debit, credit, remarks, account as account_head, (Select mobile_no from `tabCustomer` where name = gl.party) as mobile_no
         FROM `tabGL Entry` gl
         WHERE {conditions}
          ORDER BY posting_date;
