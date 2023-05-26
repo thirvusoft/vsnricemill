@@ -32,7 +32,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Report",
-   "link_count": 4,
+   "link_count": 5,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -73,11 +73,21 @@
    "link_count": 0,
    "link_to": "Journal Entry Expense Report",
    "link_type": "Report",
-   "onboard": 0,
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Day Book Report",
+   "link_count": 0,
+   "link_to": "Consolidated Day Book",
+   "link_type": "Report",
+   "onboard": 1,
    "type": "Link"
   }
  ],
- "modified": "2023-05-16 12:09:41.088932",
+ "modified": "2023-05-23 11:19:35.728409",
  "modified_by": "Administrator",
  "module": "Vsnricemill",
  "name": "Sales",
