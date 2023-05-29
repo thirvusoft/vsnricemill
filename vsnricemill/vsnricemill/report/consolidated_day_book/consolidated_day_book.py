@@ -105,6 +105,8 @@ def get_data(filters={}):
     je_data = get_journal_entry_data(filters)
 
     final_data = si_data + pi_data + pe_data + je_data
+    # final_data += [{'credit':sum([i['credit'] for i in final_data if i.get('is_total')]), 'debit':sum([i['debit'] for i in final_data if i.get('is_total')])}]
+    final_data += [{'party':'<b>In Hand (Debit - Credit)</b>','debit':sum([i['debit'] for i in final_data if i.get('is_total')]) - sum([i['credit'] for i in final_data if i.get('is_total')])  }]
     return final_data
 def get_sales_invoice_data(filters={}):
     default_receivable_acc = frappe.db.get_value('Company', filters.get('company'), 'default_receivable_account')
@@ -153,7 +155,7 @@ def get_sales_invoice_data(filters={}):
         c=c+m.credit
     if(len(sales_invoices) == 0):
         sales_invoices = [{'voucher_no':'No record found', 'indent':1}]
-    return [{'indent':0, 'voucher_type':'Sales Invoice', 'credit':0, 'debit':0}] + sales_invoices +  [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c}]
+    return [{'indent':0, 'voucher_type':'Sales Invoice', 'credit':0, 'debit':0}] + sales_invoices +  [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c, 'is_total':1}]
 
 def get_purchase_invoice_data(filters={}):
     default_payable_acc = frappe.db.get_value('Company', filters.get('company'), 'default_payable_account')
@@ -193,7 +195,7 @@ def get_purchase_invoice_data(filters={}):
         c=c+m.credit
     if(len(purchase_invoice) == 0):
         purchase_invoice = [{'voucher_no':'No record found', 'indent':1}]
-    return [{'indent':0, 'voucher_type':'Purchase Invoice', 'credit':0, 'debit':0}] + purchase_invoice + [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c}]
+    return [{'indent':0, 'voucher_type':'Purchase Invoice', 'credit':0, 'debit':0}] + purchase_invoice + [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c, 'is_total':1}]
 
 def get_payment_entry_data(filters={}):
     default_payable_acc = frappe.db.get_value('Company', filters.get('company'), 'default_payable_account')
@@ -256,7 +258,7 @@ def get_payment_entry_data(filters={}):
         c=c+m.credit
     if(len(payment_entry) == 0):
         payment_entry = [{'voucher_no':'No record found', 'indent':1}]
-    return [{'indent':0, 'voucher_type':'Payment Entry', 'credit':0, 'debit':0}] + payment_entry + [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c}]
+    return [{'indent':0, 'voucher_type':'Payment Entry', 'credit':0, 'debit':0}] + payment_entry + [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c, 'is_total':1}]
 
 def get_journal_entry_data(filters = {}):
     conditions = f'''voucher_type = 'Journal Entry'  and is_cancelled = 0 '''
@@ -292,7 +294,6 @@ def get_journal_entry_data(filters = {}):
     c = 0
     for m in journal_entry:
         d=d+m.debit
-        c=c+m.credit
     if(len(journal_entry) == 0):
         journal_entry = [{'voucher_no':'No record found', 'indent':1}]
-    return [{'indent':0, 'voucher_type':'Journal Entry', 'credit':0, 'debit':0}] + journal_entry + [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c}]
+    return [{'indent':0, 'voucher_type':'Journal Entry', 'credit':0, 'debit':0}] + journal_entry + [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c, 'is_total':1}]
