@@ -110,10 +110,10 @@ def get_data(filters={}):
     return final_data
 def get_sales_invoice_data(filters={}):
     # default_receivable_acc = frappe.db.get_value('Company', filters.get('company'), 'default_receivable_account')
-    # conditions = f'''si.voucher_type = "Sales Invoice" '''
+    conditions = f'''si.docstatus = 1 '''
     
     if(filters.get('company')):
-        conditions = f''' si.company = '{filters['company']}' '''
+        conditions += f''' and si.company = '{filters['company']}' '''
     if(filters.get('party')):
         conditions += f''' and si.company in ('{"', '".join(filters['party'])}') '''
     if(filters.get('voucher_no')):
@@ -146,16 +146,25 @@ def get_sales_invoice_data(filters={}):
         if sales_doc.payments:
             for j in sales_doc.payments:                
                 sales_invoices[index][scrub(j.mode_of_payment)]=j.amount
-    for i in sales_invoices:
         i['indent'] = 1
-    d = 0
-    c = 0
-    for m in sales_invoices:
-        d=d+m.debit
-        c=c+m.credit
+    mode_of_payment_list=frappe.get_all("Mode of Payment",pluck="name")
+    total = [{**{scrub(i):0 for i in mode_of_payment_list}, 'indent':1, 'party':"<b>Total Amount</b>", 'debit': sum([i['debit'] for i in sales_invoices]), 'credit': sum([i['credit'] for i in sales_invoices])}]
+    
+    for i in mode_of_payment_list:
+        for m in sales_invoices:
+            if(m.get(scrub(i))):
+                if(scrub(i) not in total[0]):
+                    total[0][scrub(i)] =m.get(scrub(i))
+                else:
+                    total[0][scrub(i)] +=m.get(scrub(i))
+            else:
+                m[scrub(i)] = 0
     if(len(sales_invoices) == 0):
         sales_invoices = [{'voucher_no':'No record found', 'indent':1}]
-    return [{'indent':0, 'voucher_type':'Sales Invoice', 'credit':0, 'debit':0}] + sales_invoices +  [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c, 'is_total':1}]
+        for i in mode_of_payment_list:
+            for j in sales_invoices:
+                sales_invoices[0][scrub(i)]=0
+    return [{'indent':0, 'voucher_type':'Sales Invoice', 'credit':0, 'debit':0, **{scrub(i):0 for i in mode_of_payment_list}}] + sales_invoices + total
     
 def get_purchase_invoice_data(filters={}):
     default_payable_acc = frappe.db.get_value('Company', filters.get('company'), 'default_payable_account')
@@ -261,32 +270,33 @@ def get_payment_entry_data(filters={}):
     return [{'indent':0, 'voucher_type':'Payment Entry', 'credit':0, 'debit':0}] + payment_entry + [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c, 'is_total':1}]
 
 def get_journal_entry_data(filters = {}):
-    conditions = f'''voucher_type = 'Journal Entry'  and is_cancelled = 0 '''
+    conditions = f'''gl.voucher_type = 'Journal Entry'  and gl.is_cancelled = 0 and al.root_type = "Expense" '''
 
     if(filters.get('company')):
-        conditions += f''' and company = '{filters['company']}' '''
+        conditions += f''' and gl.company = '{filters['company']}' '''
     if(filters.get('party')):
-        conditions += f''' and party in ('{"', '".join(filters['party'])}') '''
+        conditions += f''' and gl.party in ('{"', '".join(filters['party'])}') '''
     if(filters.get('voucher_no')):
-        conditions += f''' and  voucher_no like '%{filters['voucher_no']}%' '''
+        conditions += f''' and  gl.voucher_no like '%{filters['voucher_no']}%' '''
 
     if(filters.get('from_date') and filters.get('to_date')):
-        conditions += f''' and posting_date between '{filters['from_date']}' AND '{filters['to_date']}' '''
+        conditions += f''' and gl.posting_date between '{filters['from_date']}' AND '{filters['to_date']}' '''
     elif(filters.get('from_date')):
-        conditions += f''' and posting_date >= '{filters['from_date']}' '''
+        conditions += f''' and gl.posting_date >= '{filters['from_date']}' '''
     elif(filters.get('to_date')):
-        conditions += f''' and posting_date <= '{filters['to_date']}' '''
+        conditions += f''' and gl.posting_date <= '{filters['to_date']}' '''
     
 
     if(filters.get('branch')):
-        conditions += f''' and branch = "{filters['branch']}"  '''
+        conditions += f''' and gl.branch = "{filters['branch']}"  '''
     
 
     journal_entry = frappe.db.sql(f"""
-        SELECT name, voucher_type as doc_type, posting_date, party, party_type,voucher_no, debit, credit, remarks, account as account_head, (Select mobile_no from `tabCustomer` where name = gl.party) as mobile_no
+        SELECT gl.name, gl.voucher_type as doc_type, gl.posting_date, gl.party, gl.party_type,gl.voucher_no, gl.debit, gl.credit, gl.remarks, gl.account as account_head, (Select mobile_no from `tabCustomer` where name = gl.party) as mobile_no
         FROM `tabGL Entry` gl
+        LEFT JOIN `tabAccount` al ON al.name = gl.account
         WHERE {conditions}
-         ORDER BY posting_date;
+         ORDER BY gl.posting_date;
     """,  as_dict = 1)
     for i in journal_entry:
         i['indent'] = 1
