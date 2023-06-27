@@ -3,6 +3,8 @@ import frappe
 from erpnext.accounts.utils import get_account_currency, get_balance_on, get_outstanding_invoices
 from frappe.email.doctype.notification.notification import get_context
 from frappe.integrations.doctype.slack_webhook_url.slack_webhook_url import send_slack_message
+from erpnext.selling.doctype.customer.customer import get_customer_outstanding
+
 def update(doc,actions):
     if doc.payment_type == "Pay":
         bank_account =  frappe.get_doc("Account",doc.paid_from)
@@ -25,3 +27,12 @@ def update(doc,actions):
                     reference_name=doc.name,
                 )
                 frappe.msgprint(f"You have almost exhasuted your CC {doc.paid_from} limit")
+
+
+# def current_outstanding_amount(doc, actions=None):
+#         customer = doc.party  
+#         doc.current_outstanding_amount = get_customer_outstanding(customer,doc.company) 
+#         if actions == "before_submit":
+#             doc.current_outstanding_amount -= doc.paid_amount
+
+#     # doc.current_outstanding_amount = get_customer_outstanding(customer,doc.company) 
