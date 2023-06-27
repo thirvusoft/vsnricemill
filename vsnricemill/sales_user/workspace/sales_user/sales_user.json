@@ -15,7 +15,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Sales Register",
-   "link_count": 3,
+   "link_count": 4,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -48,9 +48,19 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Stock Balance Report",
+   "link_count": 0,
+   "link_to": "Daily Stock Balance Report",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
   }
  ],
- "modified": "2023-05-15 10:50:33.655832",
+ "modified": "2023-05-29 13:36:18.623712",
  "modified_by": "Administrator",
  "module": "Sales user",
  "name": "Sales User",

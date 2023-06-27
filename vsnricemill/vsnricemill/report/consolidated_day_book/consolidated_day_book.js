@@ -98,7 +98,7 @@ frappe.query_reports["Consolidated Day Book"] = {
 			'fieldname':'sales_type',
 			'label':'Sales Type',
 			'fieldtype':'Select',
-			'options': '\nCredit\nRetail\nOpening'
+			'options': '\nCredit\nRetail'
 		}
 
 				
