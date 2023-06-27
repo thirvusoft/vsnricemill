@@ -121,7 +121,10 @@ doc_events = {
 		# "on_cancel" : "vsnricemill.vsnricemill.custom.py.sales_invoice.cancel_denomination"
 	},
     "Payment Entry": {
-    	"validate" : 	"vsnricemill.vsnricemill.custom.py.payment_entry.update",
+    	"validate" : 	["vsnricemill.vsnricemill.custom.py.payment_entry.update",
+                    # "vsnricemill.vsnricemill.custom.py.payment_entry.current_outstanding_amount"
+					],
+        # "before_submit":    "vsnricemill.vsnricemill.custom.py.payment_entry.current_outstanding_amount"
 	},
     "Journal Entry" : {
 		"validate" : "vsnricemill.vsnricemill.custom.py.journal_entry.update"
