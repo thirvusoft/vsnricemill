@@ -15,7 +15,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Sales Register",
-   "link_count": 4,
+   "link_count": 5,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -58,9 +58,19 @@
    "link_type": "Report",
    "onboard": 1,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Payment Ledger",
+   "link_count": 0,
+   "link_to": "Payment Ledger",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-05-29 13:36:18.623712",
+ "modified": "2023-07-13 19:39:34.493250",
  "modified_by": "Administrator",
  "module": "Sales user",
  "name": "Sales User",

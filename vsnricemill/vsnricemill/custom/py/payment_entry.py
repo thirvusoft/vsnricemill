@@ -29,10 +29,9 @@ def update(doc,actions):
                 frappe.msgprint(f"You have almost exhasuted your CC {doc.paid_from} limit")
 
 
-# def current_outstanding_amount(doc, actions=None):
-#         customer = doc.party  
-#         doc.current_outstanding_amount = get_customer_outstanding(customer,doc.company) 
-#         if actions == "before_submit":
-#             doc.current_outstanding_amount -= doc.paid_amount
+def current_outstanding_amount(doc, actions=None):
+        customer = doc.party  
+        doc.current_outstanding_amount = get_customer_outstanding(customer,doc.company) 
+        if actions == "before_submit":
+            doc.current_outstanding_amount -= doc.paid_amount
 
-#     # doc.current_outstanding_amount = get_customer_outstanding(customer,doc.company) 
