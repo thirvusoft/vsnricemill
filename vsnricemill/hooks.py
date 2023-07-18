@@ -29,7 +29,9 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"Sales Invoice" : "/vsnricemill/custom/js/sales_invoice.js"}
+doctype_js = {
+    "Sales Invoice" : "/vsnricemill/custom/js/sales_invoice.js",
+	}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -122,9 +124,9 @@ doc_events = {
 	},
     "Payment Entry": {
     	"validate" : 	["vsnricemill.vsnricemill.custom.py.payment_entry.update",
-                    # "vsnricemill.vsnricemill.custom.py.payment_entry.current_outstanding_amount"
+                    "vsnricemill.vsnricemill.custom.py.payment_entry.current_outstanding_amount"
 					],
-        # "before_submit":    "vsnricemill.vsnricemill.custom.py.payment_entry.current_outstanding_amount"
+        "before_submit":    "vsnricemill.vsnricemill.custom.py.payment_entry.current_outstanding_amount"
 	},
     "Journal Entry" : {
 		"validate" : "vsnricemill.vsnricemill.custom.py.journal_entry.update"
