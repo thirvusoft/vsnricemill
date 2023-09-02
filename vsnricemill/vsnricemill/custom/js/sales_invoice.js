@@ -27,6 +27,30 @@ frappe.ui.form.on("Sales Invoice", {
                         frm.set_value("existing_loyalty_point",r.message)
                 }
                 })
+                frappe.call({
+                    method: "vsnricemill.vsnricemill.custom.py.sales_invoice.customer_advance_amount",
+                    args:{
+                        customer:frm.doc.customer,
+                        
+                    },
+                    callback: function(r) {
+                       if (r.message[0]["total_unpaid"] < 0){
+                        let text = r.message[0]["total_unpaid"]
+                        let amount = `<p style="color:Tomato;font-size:15px;">
+						Advance Amount ${text}
+                        </p>`
+                    frm.set_df_property('advance_amount', 'options', amount);
+
+                       }
+                       else{
+                        let amount = `<p style="color:Tomato;font-size:15px;">
+						Advance Amount ${0}
+                        </p>`
+                    frm.set_df_property('advance_amount', 'options', amount);
+                       }
+                      
+                }
+                })
             
             }
     

@@ -130,4 +130,9 @@ def customer_outstanding_amount(self, action=None):
     self.customer_out_standing = get_customer_outstanding(customer,self.company) 
     if action == "before_submit":
         self.customer_out_standing += self.outstanding_amount
-    
+
+
+@frappe.whitelist()   
+def customer_advance_amount(customer):
+  customer_info=get_dashboard_info("Customer",customer)
+  return customer_info
