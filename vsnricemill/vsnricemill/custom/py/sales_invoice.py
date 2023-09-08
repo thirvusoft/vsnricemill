@@ -137,3 +137,13 @@ def tax_validate(doc,event):
       doc.taxes_and_charges=""
       doc.taxes=[]
       doc.tax_category=""
+
+
+@frappe.whitelist()   
+def customer_advance_amount(customer=None, company=None):
+  if not customer or not company:
+    return
+  customer_info=get_dashboard_info("Customer",customer) or []
+  for i in customer_info:
+    if i.get("company") == company:
+      return [i]
