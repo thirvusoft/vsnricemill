@@ -2,6 +2,8 @@
 // For license information, please see license.txt
 /* eslint-disable */
 
+
+
 frappe.query_reports["Consolidated Day Book"] = {
 	"filters": [
 		{
@@ -9,7 +11,9 @@ frappe.query_reports["Consolidated Day Book"] = {
 			"label": __("Company"),
 			"fieldtype": "Link",
 			"options": "Company",
-			"default": frappe.defaults.get_user_permissions()['Company']?frappe.defaults.get_user_permissions()['Company'][0].doc:'',
+			"default": frappe.defaults.get_user_permissions()["Company"]?(
+				frappe.defaults.get_user_permissions()["Company"].filter(d=> d.is_default).length?frappe.defaults.get_user_permissions()["Company"].filter(d=> d.is_default)[0].doc:"")
+				:'',
 			"reqd": 1
 		},
 		{

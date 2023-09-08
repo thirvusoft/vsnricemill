@@ -131,3 +131,9 @@ def customer_outstanding_amount(self, action=None):
     if action == "before_submit":
         self.customer_out_standing += self.outstanding_amount
     
+## tax remove from pos bills
+def tax_validate(doc,event):
+    if doc.is_pos:
+      doc.taxes_and_charges=""
+      doc.taxes=[]
+      doc.tax_category=""

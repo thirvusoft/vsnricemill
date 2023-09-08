@@ -22,9 +22,9 @@
   {
    "hidden": 0,
    "is_query_report": 1,
-   "label": "Stock Balance",
+   "label": "Stock Ledger",
    "link_count": 0,
-   "link_to": "Stock Balance",
+   "link_to": "Stock Ledger",
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
@@ -32,15 +32,15 @@
   {
    "hidden": 0,
    "is_query_report": 1,
-   "label": "Stock Ledger",
+   "label": "Simplified Stock Balance",
    "link_count": 0,
-   "link_to": "Stock Ledger",
+   "link_to": "Simplified Stock Balance",
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-03-16 16:26:53.753419",
+ "modified": "2023-08-07 18:36:56.003029",
  "modified_by": "Administrator",
  "module": "Vsnricemill",
  "name": "Inventory",
