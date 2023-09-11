@@ -164,3 +164,11 @@ def customer_advance_amount(customer=None, company=None):
   for i in customer_info:
     if i.get("company") == company:
       return [i]
+
+@frappe.whitelist()
+def is_pos_user(user=frappe.session.user):
+    profiles = frappe.get_all("POS Profile", filters=[["disabled", "!=", 1], ["POS Profile User", "user", "=", user]])
+    if profiles:
+      return True
+    
+    return
