@@ -20,6 +20,21 @@ frappe.ui.form.on("Sales Invoice Item", {
 })
 frappe.ui.form.on("Sales Invoice", {
     refresh: function(frm){
+        if(frm.is_new()){
+            frappe.call({
+                method:"vsnricemill.vsnricemill.custom.py.sales_invoice.is_pos_user",
+                args:{
+                    user:frappe.session.user
+                },
+                callback(r){
+                    if(r.message && frm.is_new()){
+                        frm.set_value("is_return", 1)
+                        frappe.show_alert("Enabled Sales Return")
+                    }
+                }
+            })
+        }
+        
         if(frm.doc.is_return){
             frm.events.apply_loose_item_filter(frm)
         }
