@@ -62,8 +62,8 @@ def get_data(filters):
 		closing_credit += row.get('credit')
 		closing_debit += row.get('debit')
 		data.append(row)
-	
-	data.append({'month':"<b>Closing Balance</b>",'credit':f'{closing_credit}','debit':f'{closing_debit}','balance':f'{closing_balance}'})
+	print(closing_balance)
+	data.append({'month':"<b>Closing Balance</b>",'credit':f'{closing_credit}','debit':f'{closing_debit}','closing':f'{closing_balance}'})
 	return data
 
 def get_sales_transactions_based_on_customers_or_suppliers(filters):
