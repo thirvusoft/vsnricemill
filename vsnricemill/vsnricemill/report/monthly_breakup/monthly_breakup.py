@@ -20,12 +20,12 @@ def get_data(filters):
 
 	months_between = get_months_between_dates(start_date, end_date)
 	data = []
-	result = get_sales_transactions_based_on_customers_or_suppliers(filters)
+	result = get_sales_transactions_based_on_customers(filters)
 	previous = frappe.get_all(
 					'GL Entry',
 					fields=["SUM(credit) as credit", "SUM(debit) as debit", 'posting_date','party'],
 					filters={
-						"docstatus": 1,
+						"is_cancelled": 0,
 						"company": filters["company"],
 						'party': filters.get('customer'),
 						'party_type':"Customer",
@@ -51,29 +51,46 @@ def get_data(filters):
 
 	for mon in months_between:
 		row = {}
+		start_date,end_date = find_start_end_date_of_month(str(month_dict.get(mon)))
+		
 		row.update({
-			'month':mon,
-			'credit':result.get(mon)[0] if result.get(mon) else 0,
-			'debit':result.get(mon)[1] if result.get(mon) else 0,
-			'closing':(result.get(mon)[2] + closing) if result.get(mon) else 0
+			'month': f'<button style="width:100px;background-color:#81D4FA" onclick="frappe.set_route(\'query-report\', \'General Ledger\', {{\'from_date\': \'{start_date}\',\'company\': \'{filters.get("company")}\',\'to_date\': \'{end_date}\',\'party\': \'{filters.get("customer")}\',\'party_type\': \'Customer\'}})">{mon}</button>',
+			'credit': result.get(mon)[0] if result.get(mon) else 0,
+			'debit': result.get(mon)[1] if result.get(mon) else 0,
+			'closing': (result.get(mon)[2] + closing) if result.get(mon) else 0
 		})
+			
+
 		closing = row.get('closing')
 		closing_balance += row.get('closing')
 		closing_credit += row.get('credit')
 		closing_debit += row.get('debit')
 		data.append(row)
-	print(closing_balance)
+
 	data.append({'month':"<b>Closing Balance</b>",'credit':f'{closing_credit}','debit':f'{closing_debit}','closing':f'{closing_balance}'})
 	return data
+	
+def find_start_end_date_of_month(given_date):
+	# Parse the given date
+	date_obj = datetime.strptime(given_date, '%Y-%m-%d')
 
-def get_sales_transactions_based_on_customers_or_suppliers(filters):
+	# Find the first day of the month
+	start_date = date_obj.replace(day=1)
+
+	# Calculate the last day of the month
+	next_month = (date_obj.replace(day=28) + timedelta(days=4)).replace(day=1)
+	end_date = next_month - timedelta(days=1)
+
+	return start_date, end_date
+
+def get_sales_transactions_based_on_customers(filters):
 
 		# Fetch the data
 		entries = frappe.get_all(
 			'GL Entry',
 			fields=["SUM(credit) as credit", "SUM(debit) as debit", 'posting_date','party'],
 			filters={
-				"docstatus": 1,
+				"is_cancelled": 0,
 				"company": filters["company"],
 				'party': filters.get('customer'),
 				'party_type':"Customer",
@@ -140,10 +157,10 @@ def get_months_between_dates(start_date, end_date):
 		month_name = start_date.strftime("%b").upper()
 		year = start_date.strftime("%Y")
 		months.append(f"{month_name} {year}")
-		
+		month_dict.update({
+			f"{month_name} {year}":start_date.strftime('%Y-%m-%d')
+		})
 		# Increment the month using relativedelta
 		start_date += relativedelta(months=1)
-		month_dict.update({
-			f"{month_name} {year}":{start_date.strftime('%Y-%m')}
-		})
+
 	return months
