@@ -31,6 +31,7 @@ app_license = "MIT"
 # include js in doctype views
 doctype_js = {
     "Sales Invoice" : "/vsnricemill/custom/js/sales_invoice.js",
+    "Payment Entry": "/vsnricemill/custom/js/payment_entry.js"
 	'Customer': "/vsnricemill/custom/js/customer.js"
 	}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -141,23 +142,11 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-#	"all": [
-#		"vsnricemill.tasks.all"
-#	],
-#	"daily": [
-#		"vsnricemill.tasks.daily"
-#	],
-#	"hourly": [
-#		"vsnricemill.tasks.hourly"
-#	],
-#	"weekly": [
-#		"vsnricemill.tasks.weekly"
-#	],
-#	"monthly": [
-#		"vsnricemill.tasks.monthly"
-#	],
-# }
+scheduler_events = {
+	"daily": [
+		"vsnricemill.vsnricemill.custom.py.customer.merge_mobile_no"
+	]
+}
 
 # Testing
 # -------

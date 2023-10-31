@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"jZ93enR4CD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales</span>\",\"col\":12}},{\"id\":\"5HWttOUE6l\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer\",\"col\":3}},{\"id\":\"uUYvLURtW0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"ILAZMzmvFr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"mACnmk6Z-s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Delivery Note\",\"col\":3}},{\"id\":\"zoR6frvT5A\",\"type\":\"card\",\"data\":{\"card_name\":\"Report\",\"col\":4}},{\"id\":\"W7VaIp7q9c\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}}]",
+ "content": "[{\"id\":\"jZ93enR4CD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales</span>\",\"col\":12}},{\"id\":\"5HWttOUE6l\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer\",\"col\":3}},{\"id\":\"uUYvLURtW0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"ILAZMzmvFr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"mACnmk6Z-s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Delivery Note\",\"col\":3}},{\"id\":\"P0nsREH4y6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Return\",\"col\":3}},{\"id\":\"Phb3C4GzVC\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zoR6frvT5A\",\"type\":\"card\",\"data\":{\"card_name\":\"Report\",\"col\":4}},{\"id\":\"W7VaIp7q9c\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}}]",
  "creation": "2023-03-08 17:24:58.620932",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -97,8 +97,8 @@
    "type": "Link"
   }
  ],
- "modified": "2023-05-29 13:35:38.683239",
- "modified_by": "Administrator",
+ "modified": "2023-09-11 12:32:03.645989",
+ "modified_by": "shankar@thirvusoft.in",
  "module": "Vsnricemill",
  "name": "Sales",
  "number_cards": [],
@@ -114,6 +114,14 @@
    "doc_view": "List",
    "label": "Customer",
    "link_to": "Customer",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Sales Return",
+   "link_to": "Sales Invoice",
+   "stats_filter": "{\"is_return\":[\"=\",1]}",
    "type": "DocType"
   },
   {

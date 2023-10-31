@@ -36,8 +36,25 @@ def get_attribute(items):
     return get_abb
 
 def validate(doc,event):
+    validate_return_items(doc)
     for i in doc.items:
         i.size = frappe.db.get_value("Item Variant Attribute",{"parent":i.item_code,"attribute":"Size"},"attribute_value")
+
+def validate_return_items(doc):
+    if not doc.is_return or doc.get("return_against"):
+      return
+    
+    return_items = []
+    return_items.extend(frappe.get_all("Sales Invoice Item", filters={"parent":doc.return_against}, pluck="item_code"))
+    return_items.extend(frappe.get_all("Item", filters={"is_loose_item_for_return":1}, pluck="name"))
+    msg=""
+    for i in doc.items:
+      if i.item_code not in return_items:
+        msg += f"""<p>Row #{i.idx} Item <b>{i.item_code}</b> is not Allowed to Return</p>"""
+    
+    if msg:
+      msg += "<p>To allow these items to return Enable <b>Is Loose Item for Return</b> in these Item(s)</p>"
+      frappe.throw(msg)
 
 import frappe
 from erpnext.accounts.party import get_dashboard_info
@@ -147,3 +164,11 @@ def customer_advance_amount(customer=None, company=None):
   for i in customer_info:
     if i.get("company") == company:
       return [i]
+
+@frappe.whitelist()
+def is_pos_user(user=frappe.session.user):
+    profiles = frappe.get_all("POS Profile", filters=[["disabled", "!=", 1], ["POS Profile User", "user", "=", user]])
+    if profiles:
+      return True
+    
+    return

@@ -1,5 +1,8 @@
 frappe.ui.form.on("Sales Invoice Item", {
     item_code: function(frm,cdt,cdn){
+        if(frm.doc.is_return){
+            frm.events.apply_loose_item_filter(frm)
+        }
         var row = locals[cdt][cdn]
         frappe.call({
             
@@ -17,8 +20,34 @@ frappe.ui.form.on("Sales Invoice Item", {
 })
 frappe.ui.form.on("Sales Invoice", {
     refresh: function(frm){
+        // if(frm.is_new() && !frm.doc.is_return){
+        //     frappe.call({
+        //         method:"vsnricemill.vsnricemill.custom.py.sales_invoice.is_pos_user",
+        //         args:{
+        //             user:frappe.session.user
+        //         },
+        //         callback(r){
+        //             if(r.message && frm.is_new()){
+        //                 frm.set_value("is_return", 1)
+        //                 frappe.show_alert("Enabled Sales Return")
+        //             }
+        //         }
+        //     })
+        // }
+        
+        if(frm.doc.is_return){
+            frm.events.apply_loose_item_filter(frm)
+        }
         if(!frm.is_new()){
             frm.events.get_advance_amount(frm)
+        }
+    },
+    is_return: function(frm){
+        if(frm.doc.is_return){
+            frm.events.apply_loose_item_filter(frm)
+        }
+        else{
+            frm.events.remove_loose_item_filter(frm)
         }
     },
     company: function(frm){
@@ -35,6 +64,33 @@ frappe.ui.form.on("Sales Invoice", {
             callback: function(r) {
                 frm.set_value("existing_loyalty_point",r.message)
         }
+        })
+    },
+    apply_loose_item_filter: function(frm){
+        frm.set_query("item_code", "items", ()=>{
+            return {
+                query: "erpnext.controllers.queries.item_query",
+                filters:{
+                    'is_sales_item': 1, 
+                    'customer': frm.doc.customer, 
+                    'has_variants': 0,
+                    'company':frm.doc.company,
+                    'is_loose_item_for_return':1
+                } 
+            }
+        })
+    },
+    remove_loose_item_filter: function(frm){
+        frm.set_query("item_code", "items", ()=>{
+            return {
+                query: "erpnext.controllers.queries.item_query",
+                filters:{
+                    'is_sales_item': 1, 
+                    'customer': frm.doc.customer, 
+                    'has_variants': 0,
+                    'company':frm.doc.company,
+                } 
+            }
         })
     },
     get_advance_amount:function(frm){
