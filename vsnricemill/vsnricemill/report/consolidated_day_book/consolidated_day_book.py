@@ -248,14 +248,15 @@ def get_payment_entry_data(filters={}):
             party, 
             party_type, 
             voucher_no, 
-            debit as credit, 
-            credit as debit, 
+            sum(debit) as credit, 
+            sum(credit) as debit, 
             remarks, 
             {f'''CASE
                 {" ".join([f" when gl.party_type='{p[0]}' then {get_party_type_query(p[0])} " for p in party_types if p])}
             END as mobile_no''' if party_types else "'' as mobile_no"}
         FROM `tabGL Entry` gl
         WHERE {conditions}
+         GROUP BY voucher_no
          ORDER BY posting_date;
     """,  as_dict = 1)
     for i in payment_entry:

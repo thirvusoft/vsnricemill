@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"HwjfaZK0VD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales User</span>\",\"col\":12}},{\"id\":\"4PDyLwAlfd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"POS\",\"col\":3}},{\"id\":\"yXTd2W7e9d\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"PviLc_rbpw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"Al87TC1mV6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"_yu2nKwugL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"GTlIZhuBDp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Ledger\",\"col\":3}},{\"id\":\"ZwTTB8YH0g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"ph0c0LUaul\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Report</b></span>\",\"col\":12}},{\"id\":\"GDH9VnvXPQ\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales Register\",\"col\":4}}]",
+ "content": "[{\"id\":\"HwjfaZK0VD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales User</span>\",\"col\":12}},{\"id\":\"4PDyLwAlfd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"POS\",\"col\":3}},{\"id\":\"yXTd2W7e9d\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"PviLc_rbpw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"Al87TC1mV6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"_yu2nKwugL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"GTlIZhuBDp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Ledger\",\"col\":3}},{\"id\":\"ZwTTB8YH0g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"WmmI5PuNaJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"ph0c0LUaul\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Report</b></span>\",\"col\":12}},{\"id\":\"GDH9VnvXPQ\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales Register\",\"col\":4}}]",
  "creation": "2023-03-16 11:10:10.418345",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -70,8 +70,8 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-08 12:52:33.162013",
- "modified_by": "Administrator",
+ "modified": "2023-09-29 12:04:33.251761",
+ "modified_by": "shankar@thirvusoft.in",
  "module": "Sales user",
  "name": "Sales User",
  "number_cards": [],
@@ -87,6 +87,13 @@
    "doc_view": "List",
    "label": "Sales Invoice",
    "link_to": "Sales Invoice",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Journal Entry",
+   "link_to": "Journal Entry",
    "type": "DocType"
   },
   {
@@ -108,12 +115,6 @@
    "doc_view": "List",
    "label": "Sales Order",
    "link_to": "Sales Order",
-   "type": "DocType"
-  },
-  {
-   "doc_view": "List",
-   "label": "Journal Entry",
-   "link_to": "Journal Entry",
    "type": "DocType"
   },
   {
