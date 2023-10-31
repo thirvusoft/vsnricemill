@@ -80,7 +80,7 @@ def get_data(filters={}):
 				GROUP BY sii.item_name;
 			"""
 
-			data = frappe.db.sql(sales_history, as_list=True, debug=1)
+			data = frappe.db.sql(sales_history, as_list=True)
 			
 		else:
 
@@ -136,9 +136,9 @@ def get_data(filters={}):
 				GROUP BY sii.item_name;
 			"""
 			
-			data = frappe.db.sql(sales_history_retail, as_list=True, debug=1)
+			data = frappe.db.sql(sales_history_retail, as_list=True)
 
-			sales_history_credit = frappe.db.sql(sales_history_credit, as_list=True, debug=1)
+			sales_history_credit = frappe.db.sql(sales_history_credit, as_list=True)
 
 			if sales_history_credit:
 				data += sales_history_credit

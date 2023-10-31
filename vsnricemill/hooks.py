@@ -31,7 +31,7 @@ app_license = "MIT"
 # include js in doctype views
 doctype_js = {
     "Sales Invoice" : "/vsnricemill/custom/js/sales_invoice.js",
-    "Payment Entry": "/vsnricemill/custom/js/payment_entry.js"
+    "Payment Entry": "/vsnricemill/custom/js/payment_entry.js",
 	'Customer': "/vsnricemill/custom/js/customer.js"
 	}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
