@@ -141,23 +141,11 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-#	"all": [
-#		"vsnricemill.tasks.all"
-#	],
-#	"daily": [
-#		"vsnricemill.tasks.daily"
-#	],
-#	"hourly": [
-#		"vsnricemill.tasks.hourly"
-#	],
-#	"weekly": [
-#		"vsnricemill.tasks.weekly"
-#	],
-#	"monthly": [
-#		"vsnricemill.tasks.monthly"
-#	],
-# }
+scheduler_events = {
+	"daily": [
+		"vsnricemill.vsnricemill.custom.py.customer.merge_mobile_no"
+	]
+}
 
 # Testing
 # -------
