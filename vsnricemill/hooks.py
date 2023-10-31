@@ -97,10 +97,10 @@ after_migrate = "vsnricemill.install.after_install"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"Sales Invoice": "vsnricemill.vsnricemill.custom.py.sales_invoice.vsnsalesInvoice",
+override_doctype_class = {
+	"Sales Invoice": "vsnricemill.vsnricemill.custom.py.sales_invoice.vsnsalesInvoice",
     
-# }
+}
 # Document Events
 # ---------------
 # Hook on document methods and events
