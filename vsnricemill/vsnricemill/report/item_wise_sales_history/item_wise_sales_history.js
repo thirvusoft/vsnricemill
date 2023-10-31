@@ -30,5 +30,11 @@ frappe.query_reports["Item Wise Sales History"] = {
 			"fieldtype": "Date",
 			"default": "Today",
 		},
+		{
+			"fieldname":"type",
+			"label": __("Type"),
+			"fieldtype": "Select",
+			"options": "\nRetail\nCredit",
+		},
 	]
 };
