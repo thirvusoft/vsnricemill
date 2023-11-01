@@ -9,7 +9,6 @@ from frappe.model.naming import make_autoname
 from frappe.utils import add_days, cint, cstr, flt, formatdate, get_link_to_form, getdate, nowdate
 from frappe import _, msgprint, throw
 
-
 def auto_name(doc, actions):
     if(doc.pos_profile == "CounterSales VSN"):
         doc.name = make_autoname(f"{doc.name_series}.-.{doc.pos_series}.-.#####",doc=doc)
@@ -165,6 +164,67 @@ def customer_advance_amount(customer=None, company=None):
     if i.get("company") == company:
       return [i]
 
+
+class vsnsalesInvoice(SalesInvoice):
+
+  def make_loyalty_point_entry(self):
+
+    # Customized
+    # Start
+
+    is_discount = False
+
+    for item in self.items:
+
+      if item.discount_amount > 0:
+
+        is_discount = True
+        break
+
+    if self.discount_amount <= 0 and not is_discount:
+
+      # End
+      
+      returned_amount = self.get_returned_amount()
+      current_amount = flt(self.grand_total) - cint(self.loyalty_amount)
+      eligible_amount = current_amount - returned_amount
+      lp_details = get_loyalty_program_details_with_points(
+        self.customer,
+        company=self.company,
+        current_transaction_amount=current_amount,
+        loyalty_program=self.loyalty_program,
+        expiry_date=self.posting_date,
+        include_expired_entry=True,
+      )
+      if (
+        lp_details
+        and getdate(lp_details.from_date) <= getdate(self.posting_date)
+        and (not lp_details.to_date or getdate(lp_details.to_date) >= getdate(self.posting_date))
+      ):
+
+        collection_factor = lp_details.collection_factor if lp_details.collection_factor else 1.0
+        points_earned = cint(eligible_amount / collection_factor)
+
+        doc = frappe.get_doc(
+          {
+            "doctype": "Loyalty Point Entry",
+            "company": self.company,
+            "loyalty_program": lp_details.loyalty_program,
+            "loyalty_program_tier": lp_details.tier_name,
+            "customer": self.customer,
+            "invoice_type": self.doctype,
+            "invoice": self.name,
+            "loyalty_points": points_earned,
+            "purchase_amount": eligible_amount,
+            "expiry_date": add_days(self.posting_date, lp_details.expiry_duration),
+            "posting_date": self.posting_date,
+          }
+        )
+        doc.flags.ignore_permissions = 1
+        doc.save()
+        self.set_loyalty_program_tier()
+
+        
 @frappe.whitelist()
 def is_pos_user(user=frappe.session.user):
     profiles = frappe.get_all("POS Profile", filters=[["disabled", "!=", 1], ["POS Profile User", "user", "=", user]])
