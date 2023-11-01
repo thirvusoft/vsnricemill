@@ -15,6 +15,8 @@ def auto_name(doc, actions):
         doc.name = make_autoname(f"{doc.name_series}.-.{doc.pos_series}.-.#####",doc=doc)
     elif(doc.pos_profile == "VSN Bill 1"):
         doc.name = make_autoname(f"{doc.name_series}.-.{doc.pos_series}.-.#####",doc=doc)
+    if doc.company == "VSN SHOP":
+        doc.name = make_autoname("VSN-S-.#####",doc=doc)
 def counter_sales(doc, actions):
     if (doc.pos_profile == "JM Shop"):
       doc.name = make_autoname(f"{doc.c_sales}.-.{doc.pos_series}.-.#####",doc=doc)
