@@ -271,7 +271,7 @@ def get_payment_entry_data(filters={}):
     return [{'indent':0, 'voucher_type':'Payment Entry', 'credit':0, 'debit':0}] + payment_entry + [{'party':'<b>Total Amount</b>', 'debit':d,'credit':c, 'is_total':1}]
 
 def get_journal_entry_data(filters = {}):
-    conditions = f'''gl.voucher_type = 'Journal Entry'  and gl.is_cancelled = 0 and al.root_type = "Expense" '''
+    conditions = f'''gl.voucher_type = 'Journal Entry'  and gl.is_cancelled = 0 and al.root_type in ("Expense", "Income") '''
 
     if(filters.get('company')):
         conditions += f''' and gl.company = '{filters['company']}' '''

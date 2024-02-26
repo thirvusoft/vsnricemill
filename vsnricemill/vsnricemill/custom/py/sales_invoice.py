@@ -173,7 +173,8 @@ class vsnsalesInvoice(SalesInvoice):
 
     # Customized
     # Start
-
+    if not self.loyalty_program:
+      return
     is_discount = False
 
     for item in self.items:
@@ -192,6 +193,7 @@ class vsnsalesInvoice(SalesInvoice):
       eligible_amount = current_amount - returned_amount
       lp_details = get_loyalty_program_details_with_points(
         self.customer,
+        silent=True,
         company=self.company,
         current_transaction_amount=current_amount,
         loyalty_program=self.loyalty_program,

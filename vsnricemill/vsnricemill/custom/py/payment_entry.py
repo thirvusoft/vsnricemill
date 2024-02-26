@@ -27,6 +27,11 @@ def update(doc,actions):
                     reference_name=doc.name,
                 )
                 frappe.msgprint(f"You have almost exhasuted your CC {doc.paid_from} limit")
+    
+    if doc.payment_type == "Pay":
+        doc.account = doc.paid_from
+    else:
+        doc.account = doc.paid_to
 
 
 def current_outstanding_amount(doc, actions=None):

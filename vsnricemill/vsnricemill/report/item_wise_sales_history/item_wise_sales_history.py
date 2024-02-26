@@ -72,7 +72,7 @@ def get_data(filters={}):
 					`tabSales Invoice Item` sii ON sii.parent = si.name
 
 				WHERE 
-					si.docstatus != 2 
+					si.docstatus = 1 
 					AND si.company = '{filters.get('company')}'
 					AND si.posting_date BETWEEN '{filters.get('posting_date')}' AND '{filters.get('to_date')}'
 					{condition}
@@ -101,7 +101,7 @@ def get_data(filters={}):
 					`tabSales Invoice Item` sii ON sii.parent = si.name
 
 				WHERE
-					si.docstatus != 2
+					si.docstatus = 1
 					AND si.is_pos = 1
 					AND si.company = '{filters.get('company')}'
 					AND si.posting_date BETWEEN '{filters.get('posting_date')}' AND '{filters.get('to_date')}'
@@ -127,7 +127,7 @@ def get_data(filters={}):
 					`tabSales Invoice Item` sii ON sii.parent = si.name
 
 				WHERE
-					si.docstatus != 2
+					si.docstatus = 1
 					AND si.is_pos = 0
 					AND si.company = '{filters.get('company')}'
 					AND si.posting_date BETWEEN '{filters.get('posting_date')}' AND '{filters.get('to_date')}'
@@ -144,5 +144,6 @@ def get_data(filters={}):
 				data += sales_history_credit
 
 			data = sorted(data, key=lambda x:(x[0]),reverse=False)
+			frappe.errprint(data)
 
 		return data

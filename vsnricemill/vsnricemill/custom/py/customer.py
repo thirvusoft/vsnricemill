@@ -8,7 +8,14 @@ def validate_phone_number(doc, actions):
             return
         else:
             frappe.throw("Phone number is not valid.")
-
+    else:
+        frappe.throw("Mobile No is Mandatory...")
+    if doc.landline_no:
+        pattern = re.compile(r'^\d+$')
+        if pattern.match(doc.landline_no):
+            return
+        else:
+            frappe.throw("Landline No number is not valid.")
 
 
 def merge_mobile_no():
