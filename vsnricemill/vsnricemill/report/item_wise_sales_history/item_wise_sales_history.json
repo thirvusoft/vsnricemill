@@ -1,5 +1,5 @@
 {
- "add_total_row": 1,
+ "add_total_row": 0,
  "columns": [],
  "creation": "2023-05-13 09:54:49.331990",
  "disable_prepared_report": 0,
@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "VSN Billing",
- "modified": "2023-05-15 09:54:41.087612",
+ "modified": "2024-02-26 18:27:24.069633",
  "modified_by": "Administrator",
  "module": "Vsnricemill",
  "name": "Item Wise Sales History",
